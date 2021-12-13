@@ -22,7 +22,6 @@ public class PickupObject : TargetObject
 
     void OnCollect()
     {
-        Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked = true;
         if (CollectSound)
         {
             AudioUtility.CreateSFX(CollectSound, transform.position, AudioUtility.AudioGroups.Pickup, 0f);

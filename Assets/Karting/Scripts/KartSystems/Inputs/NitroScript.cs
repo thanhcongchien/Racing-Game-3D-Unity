@@ -125,12 +125,6 @@ using Photon.Pun.Demo.PunBasics;
 						playerNitroSlider.value += 0;
 
 					}
-					Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked = false;
-					if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == false)
-					{
-						Photon.Pun.Demo.PunBasics.PlayerManager.instance.nitroItem = 0;
-
-					}
 
 				}
 			}

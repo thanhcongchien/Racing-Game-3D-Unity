@@ -97,7 +97,7 @@ namespace Photon.Pun.Demo.PunBasics
                 // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
                 DontDestroyOnLoad(gameObject);
 
-            this.nitroItem = 0f;
+            
             }
 
             /// <summary>
@@ -129,7 +129,7 @@ namespace Photon.Pun.Demo.PunBasics
                 {
                     Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
                 }
-
+            this.nitroItem = 0f;
 
             //create the nitro UI
             if (this.NitroObj != null)
@@ -189,12 +189,6 @@ namespace Photon.Pun.Demo.PunBasics
                     isLocalPlayer = false;
                 }
 
-            //if (isPicked == true)
-            //{
-            //    isPicked = false;
-            //}
-
-
             if (this.beams != null && this.IsFiring != this.beams.activeInHierarchy)
                 {
                     this.beams.SetActive(this.IsFiring);
@@ -247,14 +241,17 @@ namespace Photon.Pun.Demo.PunBasics
 
             if (photonView.IsMine)
             {
-                if (other.name.Contains("Checkpoint"))
+                if (other.gameObject.name =="Checkpoint")
                 {
                     Debug.Log("chiennnnnn");
                     this.isPicked = true;
                     if (this.isPicked == true)
                     {
                         this.nitroItem = 0.2f;
+                        Debug.Log("eeeeeeeeeeeeeeeeeee");
+                        StartCoroutine(waitForAddingNitro());
                     }
+                    
                 }
                 else
                 {
@@ -273,6 +270,13 @@ namespace Photon.Pun.Demo.PunBasics
                 // we slowly affect health when beam is constantly hitting us, so player has to move to prevent death.
                 this.Health -= 0.1f * Time.deltaTime;
             }
+
+           public IEnumerator waitForAddingNitro()
+        {
+            yield return new WaitForSeconds(0.05f);
+            this.isPicked = false;
+            Debug.Log("okeeeeeeeee");
+        }
 
 
 #if !UNITY_5_4_OR_NEWER
