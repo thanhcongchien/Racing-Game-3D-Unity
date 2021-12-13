@@ -106,7 +106,6 @@ using Photon.Pun.Demo.PunBasics;
 		// update nitro bar
 		public void BootNitroProcessBar()
 		{
-       
 			fillNitroBar.GetComponent<Image>().gameObject.SetActive(true);
 			if (playerNitroSlider != null)
 			{
@@ -114,11 +113,26 @@ using Photon.Pun.Demo.PunBasics;
 
 			if (playerNitroSlider.value <= 1f && playerNitroSlider.value >= 0f)
 			{
-				if(Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true && Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == true)
+				if(Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
                 {
-					playerNitroSlider.value += 0.2f;
+					//playerNitroSlider.value += 0.2f;
+					if(Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == true)
+                    {
+						playerNitroSlider.value += Photon.Pun.Demo.PunBasics.PlayerManager.instance.nitroItem;
+                    }
+                    else
+                    {
+						playerNitroSlider.value += 0;
+
+					}
+					Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked = false;
+					if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == false)
+					{
+						Photon.Pun.Demo.PunBasics.PlayerManager.instance.nitroItem = 0;
+
+					}
+
 				}
-					
 			}
 
 				if (!KeyboardInput.instance.isBootNitro && playerNitroSlider.value >= 1f)

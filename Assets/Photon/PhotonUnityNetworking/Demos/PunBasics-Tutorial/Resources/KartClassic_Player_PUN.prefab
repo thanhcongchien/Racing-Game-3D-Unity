@@ -4438,6 +4438,7 @@ MonoBehaviour:
   nitroUI: []
   isLocalPlayer: 0
   isPicked: 0
+  nitroItem: 0
 --- !u!65 &-3331820226627108796
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -54,6 +54,7 @@ namespace Photon.Pun.Demo.PunBasics
 
             public bool isLocalPlayer  = false;
             public bool isPicked = false;
+            public float nitroItem;
 
         public static PlayerManager instance;
 
@@ -95,6 +96,8 @@ namespace Photon.Pun.Demo.PunBasics
                 // #Critical
                 // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
                 DontDestroyOnLoad(gameObject);
+
+            this.nitroItem = 0f;
             }
 
             /// <summary>
@@ -196,7 +199,13 @@ namespace Photon.Pun.Demo.PunBasics
                 {
                     this.beams.SetActive(this.IsFiring);
                 }
+
+            if (isPicked == false)
+            {
+                this.nitroItem = 0;
+
             }
+        }
 
             /// <summary>
             /// MonoBehaviour method called when the Collider 'other' enters the trigger.
@@ -236,11 +245,23 @@ namespace Photon.Pun.Demo.PunBasics
                     return;
                 }
 
-
-            if (other.name.Contains("Checkpoint"))
+            if (photonView.IsMine)
             {
-                Debug.Log("chiennnnn");
+                if (other.name.Contains("Checkpoint"))
+                {
+                    Debug.Log("chiennnnnn");
+                    this.isPicked = true;
+                    if (this.isPicked == true)
+                    {
+                        this.nitroItem = 0.2f;
+                    }
+                }
+                else
+                {
+                    this.nitroItem = 0;
+                }
             }
+            
 
                 // We are only interested in Beamers
                 // we should be using tags but for the sake of distribution, let's simply check by name.
