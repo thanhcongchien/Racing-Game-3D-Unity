@@ -25,6 +25,7 @@ namespace Photon.Pun.Demo.Asteroids
         public Image PlayerColorImage;
         public Button PlayerReadyButton;
         public Image PlayerReadyImage;
+        public Sprite[] PlayerReadyImageList;
 
         private int ownerId;
         private bool isPlayerReady;
@@ -91,7 +92,16 @@ namespace Photon.Pun.Demo.Asteroids
         public void SetPlayerReady(bool playerReady)
         {
             PlayerReadyButton.GetComponentInChildren<Text>().text = playerReady ? "Ready!" : "Ready?";
-            PlayerReadyImage.enabled = playerReady;
+            PlayerReadyImage.enabled = true;
+            if (playerReady)
+            {
+                PlayerReadyImage.sprite = PlayerReadyImageList[1];
+            }
+            else
+            {
+                PlayerReadyImage.sprite = PlayerReadyImageList[0];
+            }
+           
         }
     }
 }
