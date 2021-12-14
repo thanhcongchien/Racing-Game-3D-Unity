@@ -96,7 +96,7 @@ namespace KartGame.KartSystems
             AccelerationCurve   = 4f,
             Braking             = 10f,
             ReverseAcceleration = 5f,
-            ReverseSpeed        = 5f,
+            ReverseSpeed        = 10f,
             Steer               = 5f,
             CoastingDrag        = 4f,
             Grip                = .95f,

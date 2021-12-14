@@ -176,6 +176,7 @@ using Photon.Pun.Demo.PunBasics;
 				if (playerNitroSlider.value == 0f)
 				{
 					KeyboardInput.instance.resetNitro = false;
+					KeyboardInput.instance.NitroVFX.gameObject.SetActive(false);
 					fillNitroBar.GetComponent<Image>().gameObject.SetActive(false);
 				}
 			}

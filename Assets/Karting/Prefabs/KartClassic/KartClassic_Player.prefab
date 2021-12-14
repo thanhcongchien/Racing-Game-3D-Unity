@@ -508,7 +508,7 @@ MonoBehaviour:
   baseStats:
     TopSpeed: 10
     Acceleration: 5
-    ReverseSpeed: 5
+    ReverseSpeed: 10
     ReverseAcceleration: 5
     AccelerationCurve: 0.8
     Braking: 10
@@ -559,6 +559,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Horizontal: Horizontal
   Vertical: Vertical
+  isBootNitro: 0
+  resetNitro: 0
+  ownerKart: {fileID: 0}
+  NitroVFX: {fileID: 0}
 --- !u!114 &132457197
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ namespace KartGame.KartSystems {
         public bool isBootNitro = false;
         public bool resetNitro = false;
         public GameObject ownerKart;
+        public GameObject NitroVFX;
 
         private void Awake()
         {
@@ -54,6 +55,7 @@ namespace KartGame.KartSystems {
                             //this.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed += 50;
                             if (ownerKart.gameObject.GetComponent<ArcadeKart>() != null && Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
                             {
+                                NitroVFX.gameObject.SetActive(true);
                                 ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed += 50;
                             }
                             resetNitro = true;
