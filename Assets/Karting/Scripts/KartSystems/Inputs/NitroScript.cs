@@ -173,10 +173,14 @@ using Photon.Pun.Demo.PunBasics;
             if (KeyboardInput.instance.resetNitro &&  Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
             {
 				playerNitroSlider.value -= 0.2f * Time.deltaTime;
-				if (playerNitroSlider.value == 0f)
+				if (playerNitroSlider.value == 0f )
 				{
 					KeyboardInput.instance.resetNitro = false;
 					KeyboardInput.instance.NitroVFX.gameObject.SetActive(false);
+					foreach (GameObject driff in KeyboardInput.instance.DriffVFX)
+					{
+						driff.gameObject.SetActive(false);
+					}
 					fillNitroBar.GetComponent<Image>().gameObject.SetActive(false);
 				}
 			}

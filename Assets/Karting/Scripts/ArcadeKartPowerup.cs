@@ -17,6 +17,7 @@ public class ArcadeKartPowerup : MonoBehaviour {
     public bool disableGameObjectWhenActivated;
     public UnityEvent onPowerupActivated;
     public UnityEvent onPowerupFinishCooldown;
+    public GameObject kartPlayer;
 
     private void Awake()
     {

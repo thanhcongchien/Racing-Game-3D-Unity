@@ -59,6 +59,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -110,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostStats:
     modifiers:
-      TopSpeed: 5
-      Acceleration: 5
+      TopSpeed: 50
+      Acceleration: 10
       ReverseSpeed: 0
       ReverseAcceleration: 0
       AccelerationCurve: 0
@@ -132,6 +133,8 @@ MonoBehaviour:
   onPowerupFinishCooldown:
     m_PersistentCalls:
       m_Calls: []
+  kartPlayer: {fileID: 8966467527850851934, guid: 1082b98005fa0ca409fa6f608db03a82,
+    type: 3}
 --- !u!1001 &379603495342418371
 PrefabInstance:
   m_ObjectHideFlags: 0

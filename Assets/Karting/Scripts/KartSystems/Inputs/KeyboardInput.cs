@@ -12,7 +12,7 @@ namespace KartGame.KartSystems {
         public bool resetNitro = false;
         public GameObject ownerKart;
         public GameObject NitroVFX;
-
+        public GameObject[] DriffVFX; 
         private void Awake()
         {
             if(instance == null)
@@ -27,6 +27,11 @@ namespace KartGame.KartSystems {
             };             
         }
 
+        public ArcadeKart.StatPowerup boostStats1 = new ArcadeKart.StatPowerup
+        {
+           
+        };
+
         void Update()
         {
             NitroButton();
@@ -37,10 +42,29 @@ namespace KartGame.KartSystems {
                 {
                     NitroScript.instance.AfterBootNitro();
                 }
-
             }
         }
-        
+
+        //public void SpeedPadStart()
+        //{
+        //    Debug.Log("++++++++++++++");
+        //    NitroVFX.gameObject.SetActive(true);
+        //    foreach (GameObject driff in DriffVFX)
+        //    {
+        //        driff.gameObject.SetActive(true);
+        //    }
+
+        //}
+
+        //public void SpeedPadStop()
+        //{
+        //    NitroVFX.gameObject.SetActive(false);
+        //    foreach (GameObject driff in DriffVFX)
+        //    {
+        //        driff.gameObject.SetActive(false);
+        //    }
+        //}
+
         public void NitroButton()
         {
                 if (Input.GetKeyDown("space"))
@@ -53,14 +77,22 @@ namespace KartGame.KartSystems {
                         if (NitroScript.instance.playerNitroSlider.value >= 1f)
                         {
                             //this.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed += 50;
-                            if (ownerKart.gameObject.GetComponent<ArcadeKart>() != null && Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
+                            if (this.ownerKart.gameObject.GetComponent<ArcadeKart>() != null && Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
+                            {
+
+                            this.ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed += 50;
+                            if (this.ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed > 20)
                             {
                                 NitroVFX.gameObject.SetActive(true);
-                                ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed += 50;
+                                foreach (GameObject driff in DriffVFX)
+                                {
+                                    driff.gameObject.SetActive(true);
+                                }
+                            }
                             }
                             resetNitro = true;
                         }
-                        Debug.Log("baseStats.TopSpeed after pressing space is " + ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed);
+                        Debug.Log("baseStats.TopSpeed after pressing space is " + this.ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed);
                     }
                     else
                     {
