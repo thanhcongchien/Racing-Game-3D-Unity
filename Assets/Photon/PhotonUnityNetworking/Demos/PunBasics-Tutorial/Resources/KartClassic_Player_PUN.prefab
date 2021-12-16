@@ -1032,7 +1032,7 @@ MonoBehaviour:
   IdleSound: {fileID: 1200884217797182171}
   RunningSound: {fileID: 5213079688223105377}
   RunningSoundMaxVolume: 1
-  RunningSoundMaxPitch: 1
+  RunningSoundMaxPitch: 0.5
   ReverseSound: {fileID: 3568976030824564413}
   ReverseSoundMaxVolume: 0.5
   ReverseSoundMaxPitch: 0.6

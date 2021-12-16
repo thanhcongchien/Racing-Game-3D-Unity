@@ -8,6 +8,7 @@ public class MusicClass : MonoBehaviour
     //private AudioSource _audioSource;
     public Sprite[] ButtonImg;
     public GameObject bgMusic;
+    public AudioClip[] ListMusic;
     private void Awake()
     {
         //DontDestroyOnLoad(transform.gameObject);
@@ -21,11 +22,31 @@ public class MusicClass : MonoBehaviour
     {
         //if (_audioSource.isPlaying) return;
         //_audioSource.Play();
-        bgMusic.gameObject.SetActive(true);
+        if(bgMusic != null)
+        {
+            bgMusic.gameObject.SetActive(true);
+        }
+        
     }
     public void StopMusic()
     {
         //_audioSource.Stop();
         bgMusic.gameObject.SetActive(false);
+    }
+
+    public void RandomMusic()
+    {
+        if (bgMusic.activeSelf)
+        {
+            bgMusic.GetComponent<AudioSource>().clip = ListMusic[Random.Range(0, ListMusic.Length)] as AudioClip;
+            bgMusic.gameObject.SetActive(false);
+            if (!bgMusic.activeSelf)
+            {
+                Debug.Log("Music is not active");
+                bgMusic.gameObject.SetActive(true);
+            }
+        }
+        
+
     }
 }
