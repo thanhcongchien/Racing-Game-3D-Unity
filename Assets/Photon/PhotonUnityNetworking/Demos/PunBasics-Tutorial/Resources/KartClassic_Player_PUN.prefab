@@ -2919,7 +2919,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6943537814752653735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83845ea5067494342aa0a3b909b4d5ed, type: 3}
   m_Name: 
@@ -2938,6 +2938,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e7c453d829e9a4662a456d2da16a7e42, type: 2}
   - {fileID: 2100000, guid: a8f127f4a0a19407db2b784d5ae1b637, type: 3}
   - {fileID: 2100000, guid: 1af2f720e69c5224b8d6cb78ecc43947, type: 2}
+  skinMaterialBody: {fileID: 0}
+  skinMaterialKart: {fileID: 0}
 --- !u!1 &7000548623105723723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,6 +3226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915882773594684124}
   - component: {fileID: 8947761996954572632}
+  - component: {fileID: 1276429028862818117}
   m_Layer: 0
   m_Name: Kart_Body
   m_TagString: Untagged
@@ -3300,6 +3303,34 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.069639355, y: 0.1152007, z: 0}
     m_Extent: {x: 1.0020729, y: 0.7133617, z: 0.54213816}
   m_DirtyAABB: 0
+--- !u!114 &1276429028862818117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7465493350199761622}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83845ea5067494342aa0a3b909b4d5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialList:
+  - {fileID: 2100000, guid: dc263f8d5174d45c0a98e6489eca16c5, type: 2}
+  - {fileID: 2100000, guid: de7902ac5f1ca46b9894eae94bfe5e58, type: 2}
+  - {fileID: 2100000, guid: 9168b1bbaf2253e4c819e2b6304463b1, type: 2}
+  - {fileID: 2100000, guid: 711224fcf6d6c40faafe946b2f78b361, type: 2}
+  - {fileID: 2100000, guid: 720149e63952b457590122b90ee86b07, type: 2}
+  - {fileID: 2100000, guid: c70bc0190174a41759ea517f8d94ace1, type: 2}
+  - {fileID: 2100000, guid: 0030b1f081f074ea79e4c8398f97fc08, type: 2}
+  - {fileID: 2100000, guid: 6487fdefd669d4dbc91709a177cd4b93, type: 2}
+  - {fileID: 2100000, guid: bdf0bf742eef44db49906f57d30ad905, type: 2}
+  - {fileID: 2100000, guid: 346183a72a1454a878a57ebb8b961c51, type: 2}
+  - {fileID: 2100000, guid: e7c453d829e9a4662a456d2da16a7e42, type: 2}
+  - {fileID: 2100000, guid: a8f127f4a0a19407db2b784d5ae1b637, type: 3}
+  - {fileID: 2100000, guid: 1af2f720e69c5224b8d6cb78ecc43947, type: 2}
+  skinMaterialBody: {fileID: 0}
+  skinMaterialKart: {fileID: 0}
 --- !u!1 &7771133738225258906
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,6 +4238,7 @@ GameObject:
   - component: {fileID: 7803393552928153356}
   - component: {fileID: 5923339033495779245}
   - component: {fileID: 7248119616588328185}
+  - component: {fileID: 5112232221384113109}
   m_Layer: 2
   m_Name: KartClassic_Player_PUN
   m_TagString: Player
@@ -4538,6 +4570,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   valY: 0
   valX: 0
+--- !u!114 &5112232221384113109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966467527850851934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83845ea5067494342aa0a3b909b4d5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialList:
+  - {fileID: 2100000, guid: dc263f8d5174d45c0a98e6489eca16c5, type: 2}
+  - {fileID: 2100000, guid: de7902ac5f1ca46b9894eae94bfe5e58, type: 2}
+  - {fileID: 2100000, guid: 9168b1bbaf2253e4c819e2b6304463b1, type: 2}
+  - {fileID: 2100000, guid: 711224fcf6d6c40faafe946b2f78b361, type: 2}
+  - {fileID: 2100000, guid: 720149e63952b457590122b90ee86b07, type: 2}
+  - {fileID: 2100000, guid: c70bc0190174a41759ea517f8d94ace1, type: 2}
+  - {fileID: 2100000, guid: 0030b1f081f074ea79e4c8398f97fc08, type: 2}
+  - {fileID: 2100000, guid: 6487fdefd669d4dbc91709a177cd4b93, type: 2}
+  - {fileID: 2100000, guid: bdf0bf742eef44db49906f57d30ad905, type: 2}
+  - {fileID: 2100000, guid: 346183a72a1454a878a57ebb8b961c51, type: 2}
+  - {fileID: 2100000, guid: e7c453d829e9a4662a456d2da16a7e42, type: 2}
+  - {fileID: 2100000, guid: a8f127f4a0a19407db2b784d5ae1b637, type: 3}
+  - {fileID: 2100000, guid: 1af2f720e69c5224b8d6cb78ecc43947, type: 2}
+  skinMaterialBody: {fileID: 6943537814752653735}
+  skinMaterialKart: {fileID: 7465493350199761622}
 --- !u!1001 &1843756253410967351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4784,15 +4844,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6e20ffe6d2b946fb9896031aa048f90, type: 3}
---- !u!4 &3725375930142152130 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400394846411631766, guid: c6e20ffe6d2b946fb9896031aa048f90,
-    type: 3}
-  m_PrefabInstance: {fileID: 3908365085078911316}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3725375930142152129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 400394846411631765, guid: c6e20ffe6d2b946fb9896031aa048f90,
+    type: 3}
+  m_PrefabInstance: {fileID: 3908365085078911316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3725375930142152130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400394846411631766, guid: c6e20ffe6d2b946fb9896031aa048f90,
     type: 3}
   m_PrefabInstance: {fileID: 3908365085078911316}
   m_PrefabAsset: {fileID: 0}

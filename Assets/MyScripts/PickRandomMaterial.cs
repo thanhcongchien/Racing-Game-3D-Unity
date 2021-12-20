@@ -6,12 +6,26 @@ using UnityEngine;
 public class PickRandomMaterial : MonoBehaviour
 {
     public Material[] materialList;
+    public GameObject skinMaterialBody;
+    public GameObject skinMaterialKart;
+    private int index;
+
+    private void OnEnable()
+    {
+        if (materialList.Length > 0)
+        {
+            index = Random.Range(0, materialList.Length - 1);
+            this.skinMaterialBody.GetComponent<SkinnedMeshRenderer>().material = materialList[index];
+            this.skinMaterialKart.GetComponent<SkinnedMeshRenderer>().material = materialList[index];
+            Debug.Log("index: " + index);
+        }
+    }
     void Start()
     {
-        if(materialList.Length>0){
-            int index = Random.Range(0,materialList.Length-1);
-            gameObject.GetComponent<SkinnedMeshRenderer> ().material = materialList[index];
-        }
+        //if(materialList.Length>0){
+        //    index = Random.Range(0,materialList.Length-1);
+        //    this.skinMaterial.GetComponent<SkinnedMeshRenderer> ().material = materialList[index];
+        //}
     }
 
 }
