@@ -40,26 +40,19 @@ public class ToggleSwitch : MonoBehaviour
     void OnSwitch(bool on)
     {
         uiHandleRectTransform.anchoredPosition = on ? handlePosition * -1 : handlePosition; // no anim
-        //uiHandleRectTransform.DOAnchorPos(on ? handlePosition * -1 : handlePosition, .4f).SetEase(Ease.InOutBack);
 
-        //backgroundImage.color = on ? backgroundActiveColor : backgroundDefaultColor ; // no anim
-        //backgroundImage.DOColor(on ? backgroundActiveColor : backgroundDefaultColor, .6f);
-
-        //handleImage.color = on ? handleActiveColor : handleDefaultColor ; // no anim
-        //handleImage.DOColor(on ? handleActiveColor : handleDefaultColor, .4f);
         if (toggle.isOn)
         {
-            backgroundColor.GetComponent<Image>().sprite = MusicClass.Instance.ButtonImg[1];
-            handleImage.GetComponent<Image>().sprite = MusicClass.Instance.ButtonImg[3];
-            handleImage.GetComponent<Image>().color = new Color(0.2352941176470588f, 0.6823529411764706f, 0.2352941176470588f);
+
+            handleImage.GetComponent<Image>().sprite = MusicClass.Instance.ButtonImg[1];
+            //handleImage.GetComponent<Image>().color = new Color(0.2352941176470588f, 0.6823529411764706f, 0.2352941176470588f);
             MusicClass.Instance.PlayMusic();
 
         }
         else
         {
-            backgroundColor.GetComponent<Image>().sprite = MusicClass.Instance.ButtonImg[0];
-            handleImage.GetComponent<Image>().sprite = MusicClass.Instance.ButtonImg[2];
-            handleImage.GetComponent<Image>().color = new Color(0.9137254901960784f, 0.1098039215686275f, 0.1372549019607843f);
+            handleImage.GetComponent<Image>().sprite = MusicClass.Instance.ButtonImg[0];
+            //handleImage.GetComponent<Image>().color = new Color(0.9137254901960784f, 0.1098039215686275f, 0.1372549019607843f);
             MusicClass.Instance.StopMusic();
         }
     }

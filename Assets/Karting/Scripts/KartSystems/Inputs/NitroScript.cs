@@ -37,6 +37,8 @@ using Photon.Pun.Demo.PunBasics;
 
 		float characterControllerHeight;
 
+		public List<GameObject> childrenObj;
+
 		Transform targetTransform;
 
 		Renderer targetRenderer;
@@ -100,6 +102,9 @@ using Photon.Pun.Demo.PunBasics;
 			{
 				ArcadeKart.Instance.baseStats.TopSpeed = 20;
 			}
+
+			// rotate nitro items
+			//setAnimationForItems();
 		}
 		
 
@@ -219,6 +224,23 @@ using Photon.Pun.Demo.PunBasics;
 
 
     #endregion
+
+
+	//public void setAnimationForItems()
+ //   {
+	//	foreach(Transform child in transform)
+ //       {
+	//		if(child.gameObject.name == "Checkpoint")
+ //           {
+	//			childrenObj.Add(child.gameObject);
+	//			if(childrenObj != null && childrenObj.Count > 0)
+ //               {
+	//				child.transform.Rotate(new Vector3(0f, 0f, 100f) * Time.deltaTime);
+	//				Debug.Log("rotate items !!!!!!!!!");
+	//			}
+ //           }
+ //       }
+ //   }
 
     #region Public Methods
 

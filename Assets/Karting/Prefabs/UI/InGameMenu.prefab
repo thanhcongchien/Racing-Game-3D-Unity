@@ -2103,8 +2103,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.1, y: 0.0000088215}
-  m_SizeDelta: {x: 36.317993, y: 34.48367}
+  m_AnchoredPosition: {x: -13.696, y: 0.0000047684}
+  m_SizeDelta: {x: 27.392677, y: 26.009148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5163748807932154666
 CanvasRenderer:
@@ -2127,13 +2127,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.23529412, g: 0.68235296, b: 0.23529412, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa1353d7e6c145549b95be3604c37ba8, type: 3}
+  m_Sprite: {fileID: -1388128986490393070, guid: 3d47556e418244642a9a271ea86588a2,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3165,10 +3166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonImg:
-  - {fileID: 21300000, guid: d21ea015d6d5425409d6eba17dcf1b5c, type: 3}
-  - {fileID: 21300000, guid: d21ea015d6d5425409d6eba17dcf1b5c, type: 3}
-  - {fileID: 21300000, guid: aa1353d7e6c145549b95be3604c37ba8, type: 3}
-  - {fileID: 21300000, guid: aa1353d7e6c145549b95be3604c37ba8, type: 3}
+  - {fileID: -1500188861215089116, guid: 3d47556e418244642a9a271ea86588a2, type: 3}
+  - {fileID: -1388128986490393070, guid: 3d47556e418244642a9a271ea86588a2, type: 3}
   bgMusic: {fileID: 4042355836680618308, guid: 6a25160dd7a3f054fb680748b72af50a, type: 3}
   ListMusic:
   - {fileID: 8300000, guid: 8a5a519171366c1469b57a284be95e87, type: 3}
