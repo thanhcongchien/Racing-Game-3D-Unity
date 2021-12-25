@@ -4359,22 +4359,6 @@ MonoBehaviour:
   - {fileID: 3109838148617177845}
   - {fileID: 3725375930142152129}
   - {fileID: 2024414722936542114}
-  boostStats1:
-    modifiers:
-      TopSpeed: 0
-      Acceleration: 0
-      ReverseSpeed: 0
-      ReverseAcceleration: 0
-      AccelerationCurve: 0
-      Braking: 0
-      CoastingDrag: 0
-      Grip: 0
-      Steer: 0
-      AddedGravity: 0
-      Suspension: 0
-    PowerUpID: 
-    ElapsedTime: 0
-    MaxTime: 6
 --- !u!114 &6118829021792142207
 MonoBehaviour:
   m_ObjectHideFlags: 0

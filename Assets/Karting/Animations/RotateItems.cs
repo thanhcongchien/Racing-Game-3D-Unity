@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RotateItems : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class RotateItems : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);   
+        this.transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);
     }
+
 }

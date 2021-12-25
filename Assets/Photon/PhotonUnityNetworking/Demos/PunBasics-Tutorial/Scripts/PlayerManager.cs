@@ -241,7 +241,7 @@ namespace Photon.Pun.Demo.PunBasics
 
             if (photonView.IsMine)
             {
-                if (other.gameObject.name =="Checkpoint")
+                if (other.gameObject.name =="Checkpoint" || other.gameObject.name == "Donut")
                 {
                     Debug.Log("chiennnnnn");
                     this.isPicked = true;

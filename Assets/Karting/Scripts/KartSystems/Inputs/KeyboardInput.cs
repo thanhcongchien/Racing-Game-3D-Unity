@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Photon.Pun.Demo.PunBasics;
 using System.Collections.Generic;
+using System.Collections;
+
 namespace KartGame.KartSystems {
 
     public class KeyboardInput : BaseInput
@@ -12,7 +14,8 @@ namespace KartGame.KartSystems {
         public bool resetNitro = false;
         public GameObject ownerKart;
         public GameObject NitroVFX;
-        public GameObject[] DriffVFX; 
+        public GameObject[] DriffVFX;
+        private bool isReady = false;
         private void Awake()
         {
             if(instance == null)
@@ -20,17 +23,23 @@ namespace KartGame.KartSystems {
                 instance = GetComponent<KeyboardInput>();
             }
         }
+        private void Start()
+        {
+            StartCoroutine(isReadyToStart());
+        }
         public override Vector2 GenerateInput() {
-                return new Vector2 {
-                x = Input.GetAxis(Horizontal),
-                y = Input.GetAxis(Vertical)
-            };             
+            if (isReady == true)
+            {
+                return new Vector2
+                {
+                    x = Input.GetAxis(Horizontal),
+                    y = Input.GetAxis(Vertical)
+                };
+            }
+            return new Vector2 { };
+
         }
 
-        public ArcadeKart.StatPowerup boostStats1 = new ArcadeKart.StatPowerup
-        {
-           
-        };
 
         void Update()
         {
@@ -45,25 +54,6 @@ namespace KartGame.KartSystems {
             }
         }
 
-        //public void SpeedPadStart()
-        //{
-        //    Debug.Log("++++++++++++++");
-        //    NitroVFX.gameObject.SetActive(true);
-        //    foreach (GameObject driff in DriffVFX)
-        //    {
-        //        driff.gameObject.SetActive(true);
-        //    }
-
-        //}
-
-        //public void SpeedPadStop()
-        //{
-        //    NitroVFX.gameObject.SetActive(false);
-        //    foreach (GameObject driff in DriffVFX)
-        //    {
-        //        driff.gameObject.SetActive(false);
-        //    }
-        //}
 
         public void NitroButton()
         {
@@ -100,6 +90,13 @@ namespace KartGame.KartSystems {
                     }
                     print("space key was pressed");
                 }
+        }
+
+        // After counting 3, 2, 1 then player can run
+        public IEnumerator isReadyToStart()
+        {
+            yield return new WaitForSeconds(3f);
+            this.isReady = true;
         }
     }
 }
