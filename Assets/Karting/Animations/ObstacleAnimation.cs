@@ -27,7 +27,6 @@ public class ObstacleAnimation : MonoBehaviour
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, waypoints[current].transform.position, Time.deltaTime * speed);
-        this.transform.Rotate(new Vector3(0f, 100f, 0f) * Time.deltaTime);
     }
     private void OnTriggerEnter(Collider other)
     {

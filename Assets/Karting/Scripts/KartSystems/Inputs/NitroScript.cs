@@ -111,7 +111,7 @@ using Photon.Pun.Demo.PunBasics;
 		// update nitro bar
 		public void BootNitroProcessBar()
 		{
-			fillNitroBar.GetComponent<Image>().gameObject.SetActive(true);
+			
 			if (playerNitroSlider != null)
 			{
 			// if take a nitro item then process bar will be add (0.2)
@@ -123,6 +123,7 @@ using Photon.Pun.Demo.PunBasics;
 					//playerNitroSlider.value += 0.2f;
 					if(Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == true)
                     {
+						fillNitroBar.GetComponent<Image>().gameObject.SetActive(true);
 						playerNitroSlider.value += Photon.Pun.Demo.PunBasics.PlayerManager.instance.nitroItem;
                     }
                     else

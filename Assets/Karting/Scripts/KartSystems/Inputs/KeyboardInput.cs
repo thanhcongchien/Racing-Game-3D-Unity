@@ -16,6 +16,9 @@ namespace KartGame.KartSystems {
         public GameObject NitroVFX;
         public GameObject[] DriffVFX;
         private bool isReady = false;
+        //reset pre position when the player was falled out road
+        private Vector3 currentPos;
+        public GameObject playerMgr;
         private void Awake()
         {
             if(instance == null)
@@ -26,6 +29,7 @@ namespace KartGame.KartSystems {
         private void Start()
         {
             StartCoroutine(isReadyToStart());
+            //currentPos = new Vector3(14.43f, 0.88f, 3f);
         }
         public override Vector2 GenerateInput() {
             if (isReady == true)
@@ -43,8 +47,8 @@ namespace KartGame.KartSystems {
 
         void Update()
         {
-            NitroButton();
-           
+            NitroButton();       
+            ResetPlayerPosition();
             if (NitroScript.instance != null)
             {
                 if (resetNitro)
@@ -97,6 +101,34 @@ namespace KartGame.KartSystems {
         {
             yield return new WaitForSeconds(3f);
             this.isReady = true;
+        }
+
+        public void ResetPlayerPosition()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                playerMgr.transform.position = currentPos;
+            }
+            StartCoroutine(GetCurrentPosition());
+        }
+
+        public IEnumerator GetCurrentPosition()
+        {
+            Vector3 prePosition = playerMgr.transform.position;
+            yield return new WaitForSeconds(2);
+            currentPos = prePosition;
+            Debug.Log(currentPos);
+        }
+
+        // not working
+        private void OnTriggerStay(Collider other)
+        {
+            if(other.gameObject.name == "GroundPlane")
+            {
+                playerMgr.transform.position = new Vector3(14.43f, 0.88f, 3f);
+                Debug.Log("on the ground plane !!!!!!!!1");
+            }
+            
         }
     }
 }

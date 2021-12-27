@@ -50,16 +50,22 @@ namespace Photon.Pun.Demo.PunBasics
             [SerializeField]
             private GameObject NitroObj;
 
+            public static PlayerManager instance;
             public List<GameObject> nitroUI;
 
             public bool isLocalPlayer  = false;
             public bool isPicked = false;
             public float nitroItem;
 
-        public static PlayerManager instance;
+            
+            // random skin of kart
+            public Material[] materialList;
+            public GameObject skinMaterialBody;
+            public GameObject skinMaterialKart;
+            private int index;
 
-        //True, when the user is firing
-        bool IsFiring;
+            //True, when the user is firing
+            bool IsFiring;
 
             #endregion
 
@@ -144,6 +150,11 @@ namespace Photon.Pun.Demo.PunBasics
             else
             {
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> NitroObj reference on player Prefab.", this);
+            }
+
+            if (photonView.IsMine)
+            {
+                RandomSkinKart();
             }
 
 
@@ -239,6 +250,7 @@ namespace Photon.Pun.Demo.PunBasics
                     return;
                 }
 
+                // check colider with nitro items
             if (photonView.IsMine)
             {
                 if (other.gameObject.name =="Checkpoint" || other.gameObject.name == "Donut")
@@ -258,7 +270,7 @@ namespace Photon.Pun.Demo.PunBasics
                     this.nitroItem = 0;
                 }
             }
-            
+
 
                 // We are only interested in Beamers
                 // we should be using tags but for the sake of distribution, let's simply check by name.
@@ -273,9 +285,19 @@ namespace Photon.Pun.Demo.PunBasics
 
            public IEnumerator waitForAddingNitro()
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
             this.isPicked = false;
             Debug.Log("okeeeeeeeee");
+        }
+        public void RandomSkinKart()
+        {
+            if (materialList.Length > 0)
+            {
+                index = Random.Range(0, materialList.Length - 1);
+                this.skinMaterialBody.GetComponent<SkinnedMeshRenderer>().material = materialList[index];
+                this.skinMaterialKart.GetComponent<SkinnedMeshRenderer>().material = materialList[index];
+                Debug.Log("index: " + index);
+            }
         }
 
 
