@@ -11,6 +11,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Realtime;
+using ExitGames.Client.Photon;
+using Photon.Pun;
 
 namespace Photon.Pun.Demo.PunBasics
 {
@@ -22,8 +24,9 @@ namespace Photon.Pun.Demo.PunBasics
 	/// Deals with quiting the room and the game
 	/// Deals with level loading (outside the in room synchronization)
 	/// </summary>
+	
 	public class GameManager : MonoBehaviourPunCallbacks
-    {
+	{
 
 		#region Public Fields
 
@@ -40,14 +43,14 @@ namespace Photon.Pun.Demo.PunBasics
         private GameObject playerPrefab;
 		private GameObject instacePlayerPrefab;
 
-        #endregion
+		#endregion
 
-        #region MonoBehaviour CallBacks
+		#region MonoBehaviour CallBacks
 
-        /// <summary>
-        /// MonoBehaviour method called on GameObject by Unity during initialization phase.
-        /// </summary>
-        void Start()
+		/// <summary>
+		/// MonoBehaviour method called on GameObject by Unity during initialization phase.
+		/// </summary>
+		void Start()
 		{
 			Instance = this;
 
@@ -92,7 +95,6 @@ namespace Photon.Pun.Demo.PunBasics
 
 
 			}
-
 		}
 
 		/// <summary>
@@ -189,7 +191,7 @@ namespace Photon.Pun.Demo.PunBasics
 
 
 		#endregion
-
-	}
+	
+    }
 
 }

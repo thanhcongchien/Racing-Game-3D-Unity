@@ -3266,7 +3266,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09621e790441a46dd96384071c5c8a73, type: 2}
+  - {fileID: 2100000, guid: 738cfb63efae84af7b2446470711e751, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4254,7 +4254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8966467527850851934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 1.08, z: 2.3979855}
+  m_LocalPosition: {x: 14.43, y: 0.88, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 850886816766336639}
@@ -4483,6 +4483,7 @@ MonoBehaviour:
   isLocalPlayer: 0
   isPicked: 0
   nitroItem: 0
+  KartPlayer: {fileID: 8966467527850851934}
   materialList:
   - {fileID: 2100000, guid: dc263f8d5174d45c0a98e6489eca16c5, type: 2}
   - {fileID: 2100000, guid: de7902ac5f1ca46b9894eae94bfe5e58, type: 2}

@@ -12,6 +12,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 namespace Photon.Pun.Demo.PunBasics
 {
@@ -57,6 +59,9 @@ namespace Photon.Pun.Demo.PunBasics
             public bool isPicked = false;
             public float nitroItem;
 
+            //this.player
+            public GameObject KartPlayer;
+
             
             // random skin of kart
             public Material[] materialList;
@@ -64,17 +69,32 @@ namespace Photon.Pun.Demo.PunBasics
             public GameObject skinMaterialKart;
             private int index;
 
+            private const byte COLOR_CHANGE = 1;
             //True, when the user is firing
             bool IsFiring;
 
-            #endregion
+        #endregion
 
-            #region MonoBehaviour CallBacks
+        #region MonoBehaviour CallBacks
 
-            /// <summary>
-            /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
-            /// </summary>
-            public void Awake()
+        /// <summary>
+        /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
+        /// </summary>
+        /// 
+
+        private void OnEnable()
+        {
+            int randomSkin = Random.Range(0, materialList.Length - 1);
+            Debug.Log("index: " + randomSkin);
+            object[] datas = new object[] { randomSkin };
+            RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All };
+            PhotonNetwork.RaiseEvent(COLOR_CHANGE, datas, raiseEventOptions, SendOptions.SendReliable);
+        }
+
+        
+
+       
+        public void Awake()
             {
 
                 if(instance == null)
@@ -152,11 +172,11 @@ namespace Photon.Pun.Demo.PunBasics
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> NitroObj reference on player Prefab.", this);
             }
 
-            if (photonView.IsMine)
-            {
-                RandomSkinKart();
-            }
-
+            //if (photonView.IsMine)
+            //{
+            //    RandomSkinKart();
+            //}
+            PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
 
 
 #if UNITY_5_4_OR_NEWER
@@ -168,22 +188,51 @@ namespace Photon.Pun.Demo.PunBasics
 
             public override void OnDisable()
             {
-                // Always call the base to remove callbacks
-                base.OnDisable();
+            PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
+            // Always call the base to remove callbacks
+            base.OnDisable();
 
 #if UNITY_5_4_OR_NEWER
                 UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
 #endif
             }
+        private void NetworkingClient_EventReceived(EventData photonEvent)
+        {
+            byte eventCode = photonEvent.Code;
+            if (eventCode == COLOR_CHANGE)
+            {
+                Debug.Log("1111111111");
+                object[] datas = (object[])photonEvent.CustomData;
+                int randomskin = (int)datas[0];
+                Debug.Log("datas: " + datas);
+                if (materialList.Length > 0)
+                {
+                    var photonViews = UnityEngine.Object.FindObjectsOfType<PhotonView>();
+                    foreach (var view in photonViews)
+                    {
+                        var player = view.gameObject;
+                        Debug.Log("PLAYER: " + player);
+                        //Objects in the scene don't have an owner, its means view.owner will be null
+                        GameObject skinMaterialBody = player.transform.FindChild("KartSuspension/Kart/Kart_Body").gameObject;
+                        skinMaterialBody.GetComponent<SkinnedMeshRenderer>().material = materialList[randomskin];
+                        Debug.Log("randomskin :" + randomskin);
+
+                    }
+
+                }
+
+            }
+
+        }
 
 
-            /// <summary>
-            /// MonoBehaviour method called on GameObject by Unity on every frame.
-            /// Process Inputs if local player.
-            /// Show and hide the beams
-            /// Watch for end of game, when local player health is 0.
-            /// </summary>
-            public void Update()
+        /// <summary>
+        /// MonoBehaviour method called on GameObject by Unity on every frame.
+        /// Process Inputs if local player.
+        /// Show and hide the beams
+        /// Watch for end of game, when local player health is 0.
+        /// </summary>
+        public void Update()
             {
                 // we only process Inputs and check health if we are the local player
                 if (photonView.IsMine)
@@ -268,7 +317,8 @@ namespace Photon.Pun.Demo.PunBasics
                 else
                 {
                     this.nitroItem = 0;
-                }
+                }               
+                    
             }
 
 
@@ -285,7 +335,7 @@ namespace Photon.Pun.Demo.PunBasics
 
            public IEnumerator waitForAddingNitro()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
             this.isPicked = false;
             Debug.Log("okeeeeeeeee");
         }

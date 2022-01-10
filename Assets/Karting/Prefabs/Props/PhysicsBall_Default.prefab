@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7997229253953408703}
   - component: {fileID: 203723861810833291}
   - component: {fileID: 8009554169876457721}
+  - component: {fileID: 7055744006301039275}
   m_Layer: 0
   m_Name: PhysicsBall_Default
   m_TagString: Untagged
@@ -56,10 +57,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1080c34ae94001d4596c42e5897e0f7c, type: 2}
+  - {fileID: 2100000, guid: 9168b1bbaf2253e4c819e2b6304463b1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +111,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7055744006301039275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4692681909449347950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61481bf441a31142a5dc0095b84ae8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
