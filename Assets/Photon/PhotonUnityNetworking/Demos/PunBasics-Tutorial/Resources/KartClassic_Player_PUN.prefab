@@ -1016,7 +1016,7 @@ Transform:
   - {fileID: 5133880542455718920}
   - {fileID: 5455631343728568179}
   m_Father: {fileID: 3514357923825085166}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1675745562696921011
 MonoBehaviour:
@@ -1061,14 +1061,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005274344322825261}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3043900184135426272}
   - {fileID: 6658304209286576087}
-  m_Father: {fileID: 3514357923825085166}
-  m_RootOrder: 5
+  m_Father: {fileID: 4016386594218477370}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2050575977011641273
 GameObject:
@@ -1887,7 +1887,7 @@ Transform:
   m_Children:
   - {fileID: 3598699151128829303}
   m_Father: {fileID: 3514357923825085166}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4355819297048567835
 GameObject:
@@ -1921,6 +1921,38 @@ Transform:
   - {fileID: 5683291196691108279}
   m_Father: {fileID: 1342320831788613859}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4427086718914350375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4016386594218477370}
+  m_Layer: 2
+  m_Name: KartObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4016386594218477370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4427086718914350375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5700998288348152116}
+  - {fileID: 1124445761985523438}
+  m_Father: {fileID: 3514357923825085166}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4464215736055548670
 GameObject:
@@ -2562,7 +2594,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3514357923825085166}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5924675864260975564
 GameObject:
@@ -2809,7 +2841,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3514357923825085166}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
 --- !u!1 &6797555735403941269
 GameObject:
@@ -4128,8 +4160,8 @@ Transform:
   - {fileID: 365929840459695081}
   - {fileID: 961992812590613481}
   - {fileID: 6498638952868954040}
-  m_Father: {fileID: 3514357923825085166}
-  m_RootOrder: 4
+  m_Father: {fileID: 4016386594218477370}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3043229485941166970
 Animator:
@@ -4335,8 +4367,7 @@ Transform:
   - {fileID: 2149271183847223794}
   - {fileID: 7326570535286524880}
   - {fileID: 2405583397380389593}
-  - {fileID: 5700998288348152116}
-  - {fileID: 1124445761985523438}
+  - {fileID: 4016386594218477370}
   - {fileID: 6240128842160327484}
   - {fileID: 9095603999617224831}
   - {fileID: 1205298404827722866}
@@ -4583,6 +4614,7 @@ MonoBehaviour:
   lerpTime: 1000
   isRotated: 0
   hasitem: 0
+  KartObj: {fileID: 4427086718914350375}
 --- !u!65 &-3331820226627108796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5086,7 +5118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4521404770085940, guid: 89956e675b749204c8e10395ce2b5fb9, type: 3}
       propertyPath: m_LocalPosition.x

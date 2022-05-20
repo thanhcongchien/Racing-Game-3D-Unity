@@ -84,6 +84,8 @@ namespace Photon.Pun.Demo.PunBasics
 
             public bool hasitem = false; //true when player hits itembox
 
+            public GameObject KartObj;
+
         #endregion
 
         #region MonoBehaviour CallBacks
@@ -346,7 +348,7 @@ namespace Photon.Pun.Demo.PunBasics
             // check colider with nitro items
             if (photonView.IsMine)
             {
-                if (other.gameObject.name == "Checkpoint" || other.gameObject.name == "Donut")
+                if (other.gameObject.name == "Donut")
                 {
                     this.isPicked = true;
                     if (this.isPicked == true)
@@ -385,7 +387,10 @@ namespace Photon.Pun.Demo.PunBasics
         }
         public IEnumerator waitForRotateBanana()
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(2.0f);
+            this.KartObj.transform.localRotation  = Quaternion.identity;
+            this.KartObj.transform.GetChild(1).gameObject.transform.localRotation = Quaternion.identity;
+            Debug.Log("ROTATED" + this.KartObj.transform.GetChild(1).gameObject);
             this.isRotated = false;
         }
         public void RandomSkinKart()
@@ -400,7 +405,7 @@ namespace Photon.Pun.Demo.PunBasics
         }
         
         void rotateBanana(){
-            transform.Rotate(Vector3.up, Time.deltaTime * lerpTime);
+            KartObj.transform.Rotate(Vector3.up, Time.deltaTime * lerpTime);
             StartCoroutine(waitForRotateBanana());
         }
 

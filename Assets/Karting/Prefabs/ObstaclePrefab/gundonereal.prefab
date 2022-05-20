@@ -5782,6 +5782,8 @@ MonoBehaviour:
     type: 3}
   bulletSpeed: 60
   bullletAmount: 5
+  useItemButton: {fileID: 8515330543678449555, guid: 7747834466e7dee449f6b51682c097fb,
+    type: 3}
 --- !u!1 &6592960698646332459
 GameObject:
   m_ObjectHideFlags: 0

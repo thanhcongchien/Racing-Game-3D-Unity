@@ -35,6 +35,7 @@ namespace KartGame.KartSystems {
         public override Vector2 GenerateInput() {
             if (isReady == true)
             {
+                if(this.ownerKart.gameObject.GetComponent<PlayerManager>().isRotated == false)
                 return new Vector2
                 {
                     x = Input.GetAxis(Horizontal),

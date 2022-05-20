@@ -58,8 +58,8 @@ public class ItemManager : MonoBehaviour
     {
         // if (playerManager.hasitem)
         // {
-        // if (start_select) //this ensures item select process does not begin until player has used up curret item
-        // {
+        if (start_select) //this ensures item select process does not begin until player has used up curret item
+        {
 
 
 
@@ -79,12 +79,12 @@ public class ItemManager : MonoBehaviour
         //         }
 
         //     }
-        //     else if (current_Item == "Gun")
-        //     {
-        //         StartCoroutine(getGun());
-        //     }
+            if (current_Item == "Gun")
+            {
+                StartCoroutine(getGun());
+            }
 
-        // }
+        }
         // }
     }
 
@@ -105,10 +105,6 @@ public class ItemManager : MonoBehaviour
             {
                     StartCoroutine(spawnBomb(-1));
 
-            }
-            else if (current_Item == "Gun")
-            {
-                StartCoroutine(getGun());
             }
 
         }

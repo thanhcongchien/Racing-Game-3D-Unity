@@ -25,7 +25,16 @@ public class UseItem : MonoBehaviour
         {
             if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
             {
-                ItemManager.itemManagerInstance.ReadyToUseIem();
+                if (ItemManager.itemManagerInstance.current_Item == "Gun")
+                {
+                    Gun.gunInstance.shootGun();
+                }
+                else
+                {
+                    ItemManager.itemManagerInstance.ReadyToUseIem();
+                }
+
+
             }
         }
     }

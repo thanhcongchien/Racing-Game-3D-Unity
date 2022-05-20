@@ -29,8 +29,8 @@ public class Item : TargetObject
         {
             AudioUtility.CreateSFX(CollectSound, transform.position, AudioUtility.AudioGroups.Pickup, 0f);
         }
-        ItemManager.itemManagerInstance.current_Item = itemInBox;
-        ItemManager.itemManagerInstance.start_select = true;
+        // ItemManager.itemManagerInstance.current_Item = itemInBox;
+        // ItemManager.itemManagerInstance.start_select = true;
         Objective.OnUnregisterPickup(this);
         TimeManager.OnAdjustTime(TimeGained);
 
@@ -40,9 +40,20 @@ public class Item : TargetObject
 
     void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Player"))
         {
+            var itemManager = other.gameObject;
+            if (itemManager.GetComponent<ItemManager>() != null)
+            {
+                itemManager.GetComponent<ItemManager>().current_Item = itemInBox;
+                itemManager.GetComponent<ItemManager>().start_select = true;
+            }
+
             OnCollect();
+
+
+
         }
     }
 
