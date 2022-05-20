@@ -1,14 +1,13 @@
 {
     "name": "PhotonUnityNetworking.Demos",
+    "rootNamespace": "",
     "references": [
         "PhotonRealtime",
         "PhotonUnityNetworking",
         "PhotonUnityNetworking.Utilities"
     ],
     "includePlatforms": [],
-    "excludePlatforms": [
-        "Android"
-    ],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],

@@ -52,6 +52,13 @@ namespace Photon.Pun.Demo.PunBasics
             [SerializeField]
             private GameObject NitroObj;
 
+            [Tooltip("The Player's Item GameObject")]
+            [SerializeField]
+            private GameObject ItemObj;
+
+            [Tooltip("The Health GameObject to control")]
+            [SerializeField]
+            private GameObject HealthObj;
             public static PlayerManager instance;
             public List<GameObject> nitroUI;
 
@@ -72,6 +79,10 @@ namespace Photon.Pun.Demo.PunBasics
             private const byte COLOR_CHANGE = 1;
             //True, when the user is firing
             bool IsFiring;
+            public float lerpTime = 1f;
+            public bool isRotated = false;
+
+            public bool hasitem = false; //true when player hits itembox
 
         #endregion
 
@@ -126,35 +137,35 @@ namespace Photon.Pun.Demo.PunBasics
             
             }
 
-            /// <summary>
-            /// MonoBehaviour method called on GameObject by Unity during initialization phase.
-            /// </summary>
-            public void Start()
+        /// <summary>
+        /// MonoBehaviour method called on GameObject by Unity during initialization phase.
+        /// </summary>
+        public void Start()
+        {
+            CameraWork _cameraWork = gameObject.GetComponent<CameraWork>();
+
+            if (_cameraWork != null)
             {
-                CameraWork _cameraWork = gameObject.GetComponent<CameraWork>();
+                if (photonView.IsMine)
+                {
+                    _cameraWork.OnStartFollowing();
+                }
+            }
+            else
+            {
+                Debug.LogError("<Color=Red><b>Missing</b></Color> CameraWork Component on player Prefab.", this);
+            }
 
-                if (_cameraWork != null)
-                {
-                    if (photonView.IsMine)
-                    {
-                        _cameraWork.OnStartFollowing();
-                    }
-                }
-                else
-                {
-                    Debug.LogError("<Color=Red><b>Missing</b></Color> CameraWork Component on player Prefab.", this);
-                }
-
-                // Create the UI
-                if (this.playerUiPrefab != null)
-                {
-                    GameObject _uiGo = Instantiate(this.playerUiPrefab);
-                    _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-                }
-                else
-                {
-                    Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
-                }
+            // Create the UI
+            if (this.playerUiPrefab != null)
+            {
+                GameObject _uiGo = Instantiate(this.playerUiPrefab);
+                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
+            }
             this.nitroItem = 0f;
 
             //create the nitro UI
@@ -165,12 +176,43 @@ namespace Photon.Pun.Demo.PunBasics
                     GameObject _uiNitro = Instantiate(this.NitroObj);
                     _uiNitro.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
                 }
-               
+
             }
             else
             {
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> NitroObj reference on player Prefab.", this);
             }
+            //create the Item UI
+            if (this.ItemObj != null)
+            {
+                if (photonView.IsMine)
+                {
+                    GameObject _uiItem = Instantiate(this.ItemObj);
+                    _uiItem.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+                }
+
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><b>Missing</b></Color> ItemObj reference on player Prefab.", this);
+            }
+
+            //create the Health UI
+            if (this.HealthObj != null)
+            {
+                if (photonView.IsMine)
+                {
+                    GameObject _healthItem = Instantiate(this.HealthObj);
+                    _healthItem.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+                }
+
+            }
+            else
+            {
+                Debug.LogWarning("<Color=Red><b>Missing</b></Color> HealthObj reference on player Prefab.", this);
+            }
+
+
 
             //if (photonView.IsMine)
             //{
@@ -183,10 +225,10 @@ namespace Photon.Pun.Demo.PunBasics
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
 #endif
-            }
+        }
 
 
-            public override void OnDisable()
+        public override void OnDisable()
             {
             PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
             // Always call the base to remove callbacks
@@ -201,10 +243,8 @@ namespace Photon.Pun.Demo.PunBasics
             byte eventCode = photonEvent.Code;
             if (eventCode == COLOR_CHANGE)
             {
-                Debug.Log("1111111111");
                 object[] datas = (object[])photonEvent.CustomData;
                 int randomskin = (int)datas[0];
-                Debug.Log("datas: " + datas);
                 if (materialList.Length > 0)
                 {
                     var photonViews = UnityEngine.Object.FindObjectsOfType<PhotonView>();
@@ -213,7 +253,7 @@ namespace Photon.Pun.Demo.PunBasics
                         var player = view.gameObject;
                         Debug.Log("PLAYER: " + player);
                         //Objects in the scene don't have an owner, its means view.owner will be null
-                        GameObject skinMaterialBody = player.transform.FindChild("KartSuspension/Kart/Kart_Body").gameObject;
+                        GameObject skinMaterialBody = player.transform.Find("KartSuspension/Kart/Kart_Body").gameObject;
                         skinMaterialBody.GetComponent<SkinnedMeshRenderer>().material = materialList[randomskin];
                         Debug.Log("randomskin :" + randomskin);
 
@@ -233,32 +273,36 @@ namespace Photon.Pun.Demo.PunBasics
         /// Watch for end of game, when local player health is 0.
         /// </summary>
         public void Update()
+        {
+            // we only process Inputs and check health if we are the local player
+            if (photonView.IsMine)
             {
-                // we only process Inputs and check health if we are the local player
-                if (photonView.IsMine)
+                this.ProcessInputs();
+                isLocalPlayer = true;
+                if (this.Health <= 0f)
                 {
-                    this.ProcessInputs();
-                    isLocalPlayer = true;
-                    if (this.Health <= 0f)
-                    {
-                        GameManager.Instance.LeaveRoom();
-                    }
+                    GameManager.Instance.LeaveRoom();
                 }
-                else
-                {
-                    isLocalPlayer = false;
-                }
+            }
+            else
+            {
+                isLocalPlayer = false;
+            }
 
             if (this.beams != null && this.IsFiring != this.beams.activeInHierarchy)
-                {
-                    this.beams.SetActive(this.IsFiring);
-                }
+            {
+                this.beams.SetActive(this.IsFiring);
+            }
 
             if (isPicked == false)
             {
                 this.nitroItem = 0;
 
             }
+            if(isRotated == true){
+                rotateBanana();
+            }
+
         }
 
             /// <summary>
@@ -299,26 +343,27 @@ namespace Photon.Pun.Demo.PunBasics
                     return;
                 }
 
-                // check colider with nitro items
+            // check colider with nitro items
             if (photonView.IsMine)
             {
-                if (other.gameObject.name =="Checkpoint" || other.gameObject.name == "Donut")
+                if (other.gameObject.name == "Checkpoint" || other.gameObject.name == "Donut")
                 {
-                    Debug.Log("chiennnnnn");
                     this.isPicked = true;
                     if (this.isPicked == true)
                     {
                         this.nitroItem = 0.2f;
-                        Debug.Log("eeeeeeeeeeeeeeeeeee");
                         StartCoroutine(waitForAddingNitro());
                     }
-                    
+
                 }
                 else
                 {
                     this.nitroItem = 0;
-                }               
-                    
+                }
+                if (other.gameObject.name == "Banana Peel(Clone)")
+                {
+                    isRotated = true;
+                }
             }
 
 
@@ -337,7 +382,11 @@ namespace Photon.Pun.Demo.PunBasics
         {
             yield return new WaitForSeconds(0.05f);
             this.isPicked = false;
-            Debug.Log("okeeeeeeeee");
+        }
+        public IEnumerator waitForRotateBanana()
+        {
+            yield return new WaitForSeconds(3.0f);
+            this.isRotated = false;
         }
         public void RandomSkinKart()
         {
@@ -349,6 +398,13 @@ namespace Photon.Pun.Demo.PunBasics
                 Debug.Log("index: " + index);
             }
         }
+        
+        void rotateBanana(){
+            transform.Rotate(Vector3.up, Time.deltaTime * lerpTime);
+            StartCoroutine(waitForRotateBanana());
+        }
+
+         
 
 
 #if !UNITY_5_4_OR_NEWER

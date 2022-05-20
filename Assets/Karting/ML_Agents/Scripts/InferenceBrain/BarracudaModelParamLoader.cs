@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Barracuda;
+using Unity.Barracuda;
 using MLAgents.Sensor;
 using UnityEngine;
 
@@ -596,7 +596,7 @@ namespace MLAgents.InferenceBrain
                 if (tensorTester.ContainsKey(name))
                 {
                     var tester = tensorTester[name];
-                    var error = tester.Invoke(brainParameters, model.GetShapeByName(name), modelActionSize);
+                    var error = tester.Invoke(brainParameters, (TensorShape)model.GetShapeByName(name), modelActionSize);
                     if (error != null)
                     {
                         failedModelChecks.Add(error);

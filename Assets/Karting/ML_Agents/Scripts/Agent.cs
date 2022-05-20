@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Barracuda;
+using Unity.Barracuda;
 using MLAgents.Sensor;
 using UnityEngine.Serialization;
 

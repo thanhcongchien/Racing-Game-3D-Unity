@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UseItem : MonoBehaviour
+{
+    public Button useItemButton;
+    // Start is called before the first frame update
+    void Start()
+    {
+        useItemButton.GetComponent<Button>();
+        useItemButton.onClick.AddListener(useItem);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void useItem()
+    {
+        if (useItemButton != null)
+        {
+            if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
+            {
+                ItemManager.itemManagerInstance.ReadyToUseIem();
+            }
+        }
+    }
+}

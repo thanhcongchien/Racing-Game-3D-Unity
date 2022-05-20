@@ -1,5 +1,5 @@
 using UnityEngine;
-using Barracuda;
+using Unity.Barracuda;
 using System.Collections.Generic;
 using MLAgents.InferenceBrain;
 

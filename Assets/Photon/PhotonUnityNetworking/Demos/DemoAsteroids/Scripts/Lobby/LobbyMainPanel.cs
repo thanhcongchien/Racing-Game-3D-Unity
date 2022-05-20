@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Photon.Pun.Demo.Asteroids
 {
@@ -40,6 +41,11 @@ namespace Photon.Pun.Demo.Asteroids
         private Dictionary<string, RoomInfo> cachedRoomList;
         private Dictionary<string, GameObject> roomListEntries;
         private Dictionary<int, GameObject> playerListEntries;
+        [SerializeField] Image mapImg;
+        [SerializeField] Text mapTxt;
+        public int currentMap = 0;
+        public string[] Map_List = { "MainScene", "MainScene1" };
+        public Sprite[] mapImgList;
 
         #region UNITY
 
@@ -49,7 +55,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             cachedRoomList = new Dictionary<string, RoomInfo>();
             roomListEntries = new Dictionary<string, GameObject>();
-            
+
             PlayerNameInput.text = "Player " + Random.Range(1000, 10000);
         }
 
@@ -98,7 +104,7 @@ namespace Photon.Pun.Demo.Asteroids
         {
             string roomName = "Room " + Random.Range(1000, 10000);
 
-            RoomOptions options = new RoomOptions {MaxPlayers = 4};
+            RoomOptions options = new RoomOptions { MaxPlayers = 4 };
 
             PhotonNetwork.CreateRoom(roomName, options, null);
         }
@@ -126,7 +132,7 @@ namespace Photon.Pun.Demo.Asteroids
                 object isPlayerReady;
                 if (p.CustomProperties.TryGetValue(AsteroidsGame.PLAYER_READY, out isPlayerReady))
                 {
-                    entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool) isPlayerReady);
+                    entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool)isPlayerReady);
                 }
 
                 playerListEntries.Add(p.ActorNumber, entry);
@@ -195,7 +201,7 @@ namespace Photon.Pun.Demo.Asteroids
                 object isPlayerReady;
                 if (changedProps.TryGetValue(AsteroidsGame.PLAYER_READY, out isPlayerReady))
                 {
-                    entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool) isPlayerReady);
+                    entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool)isPlayerReady);
                 }
             }
 
@@ -222,10 +228,11 @@ namespace Photon.Pun.Demo.Asteroids
             roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
 
             //check min and max players in a room(2-4)
-            if((int.Parse(MaxPlayersInputField.text) >=2 && int.Parse(MaxPlayersInputField.text) <= 4)){ 
+            if ((int.Parse(MaxPlayersInputField.text) >= 2 && int.Parse(MaxPlayersInputField.text) <= 4))
+            {
                 byte maxPlayers;
                 byte.TryParse(MaxPlayersInputField.text, out maxPlayers);
-                maxPlayers = (byte) Mathf.Clamp(maxPlayers, 2, 4);
+                maxPlayers = (byte)Mathf.Clamp(maxPlayers, 2, 4);
                 RoomOptions options = new RoomOptions { MaxPlayers = maxPlayers, PlayerTtl = 10000 };
 
                 PhotonNetwork.CreateRoom(roomName, options, null);
@@ -236,7 +243,7 @@ namespace Photon.Pun.Demo.Asteroids
                 Debug.Log("cannot create a room !!!");
             }
 
-            
+
         }
 
         public void OnJoinRandomRoomButtonClicked()
@@ -276,13 +283,50 @@ namespace Photon.Pun.Demo.Asteroids
             SetActivePanel(RoomListPanel.name);
         }
 
+        public void OnClickChooseMap(int next)
+        {
+            // Player newMasterClient
+            // if (PhotonNetwork.LocalPlayer.ActorNumber == newMasterClient.ActorNumber)
+            // {
+            currentMap += next;
+
+            if (currentMap > 0)
+            {
+                currentMap = Map_List.Length - 1;
+
+                if (currentMap == 1)
+                {
+                    mapTxt.text = "Paradise Island";
+                    mapImg.sprite = mapImgList[currentMap];
+                }
+            }
+            else if (currentMap < Map_List.Length - 1)
+            {
+                currentMap = 0;
+
+                if (currentMap == 0)
+                {
+                    mapTxt.text = "Future City";
+                    mapImg.sprite = mapImgList[currentMap];
+                }
+            }
+        }
+
         public void OnStartGameButtonClicked()
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
             //PhotonNetwork.LoadLevel("DemoAsteroids-GameScene");
-            PhotonNetwork.LoadLevel("MainScene");
+            if (currentMap == 0)
+            {
+                PhotonNetwork.LoadLevel("MainScene");
+            }
+            else
+            {
+                PhotonNetwork.LoadLevel("MainScene1");
+            }
+
         }
 
         #endregion
@@ -299,7 +343,7 @@ namespace Photon.Pun.Demo.Asteroids
                 object isPlayerReady;
                 if (p.CustomProperties.TryGetValue(AsteroidsGame.PLAYER_READY, out isPlayerReady))
                 {
-                    if (!(bool) isPlayerReady)
+                    if (!(bool)isPlayerReady)
                     {
                         return false;
                     }
@@ -312,7 +356,7 @@ namespace Photon.Pun.Demo.Asteroids
 
             return true;
         }
-        
+
         private void ClearRoomListView()
         {
             foreach (GameObject entry in roomListEntries.Values)

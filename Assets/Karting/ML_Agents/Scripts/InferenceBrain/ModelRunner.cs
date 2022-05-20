@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Barracuda;
+using Unity.Barracuda;
 using UnityEngine.Profiling;
 
 namespace MLAgents.InferenceBrain

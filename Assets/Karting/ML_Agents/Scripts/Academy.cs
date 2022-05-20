@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using UnityEditor;
 #endif
 using MLAgents.InferenceBrain;
-using Barracuda;
+using Unity.Barracuda;
 
 /**
  * Welcome to Unity Machine Learning Agents (ML-Agents).
