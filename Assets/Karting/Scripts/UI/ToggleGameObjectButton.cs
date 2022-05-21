@@ -18,11 +18,17 @@ public class ToggleGameObjectButton : MonoBehaviour
     public void SetGameObjectActive(bool active)
     {
         objectToToggle.SetActive(active);
-
-        if (mainScenekart != null)
+        
+        if(active){
+            if (mainScenekart != null)
             mainScenekart.SetActive(!active);
 
         if (resetSelectionAfterClick)
+            SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             EventSystem.current.SetSelectedGameObject(null);
+        }else{
+            SoundManager.Instance.PlaySFX(SoundManager.CLOSE_SFX);
+        }
+        
     }
 }

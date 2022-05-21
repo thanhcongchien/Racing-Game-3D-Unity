@@ -10,6 +10,7 @@ namespace KartGame.UI
 
         public void LoadTargetScene() 
         {
+            SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             SceneManager.LoadSceneAsync(SceneName);
         }
     }

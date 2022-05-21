@@ -56,7 +56,7 @@ namespace Photon.Pun.Demo.Asteroids
 
                     Hashtable props = new Hashtable() {{AsteroidsGame.PLAYER_READY, isPlayerReady}};
                     PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-
+                    SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
                     if (PhotonNetwork.IsMasterClient)
                     {
                         FindObjectOfType<LobbyMainPanel>().LocalPlayerPropertiesUpdated();

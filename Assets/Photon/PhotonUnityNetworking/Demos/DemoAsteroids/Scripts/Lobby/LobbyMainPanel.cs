@@ -220,6 +220,7 @@ namespace Photon.Pun.Demo.Asteroids
             }
 
             SetActivePanel(SelectionPanel.name);
+            SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
         }
 
         public void OnCreateRoomButtonClicked()
@@ -237,10 +238,12 @@ namespace Photon.Pun.Demo.Asteroids
 
                 PhotonNetwork.CreateRoom(roomName, options, null);
                 Debug.Log("create room a successfully!!!");
+                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
             else
             {
                 Debug.Log("cannot create a room !!!");
+                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
 
 
@@ -251,11 +254,13 @@ namespace Photon.Pun.Demo.Asteroids
             SetActivePanel(JoinRandomRoomPanel.name);
 
             PhotonNetwork.JoinRandomRoom();
+            SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
         }
 
         public void OnLeaveGameButtonClicked()
         {
             PhotonNetwork.LeaveRoom();
+            SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
         }
 
         public void OnLoginButtonClicked()
@@ -266,6 +271,7 @@ namespace Photon.Pun.Demo.Asteroids
             {
                 PhotonNetwork.LocalPlayer.NickName = playerName;
                 PhotonNetwork.ConnectUsingSettings();
+                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
             else
             {
@@ -281,6 +287,7 @@ namespace Photon.Pun.Demo.Asteroids
             }
 
             SetActivePanel(RoomListPanel.name);
+            SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
         }
 
         public void OnClickChooseMap(int next)
@@ -298,6 +305,7 @@ namespace Photon.Pun.Demo.Asteroids
                 {
                     mapTxt.text = "Paradise Island";
                     mapImg.sprite = mapImgList[currentMap];
+                    SoundManager.Instance.PlaySFX(SoundManager.OPEN_SFX);
                 }
             }
             else if (currentMap < Map_List.Length - 1)
@@ -308,6 +316,7 @@ namespace Photon.Pun.Demo.Asteroids
                 {
                     mapTxt.text = "Future City";
                     mapImg.sprite = mapImgList[currentMap];
+                    SoundManager.Instance.PlaySFX(SoundManager.OPEN_SFX);
                 }
             }
         }
@@ -321,10 +330,12 @@ namespace Photon.Pun.Demo.Asteroids
             if (currentMap == 0)
             {
                 PhotonNetwork.LoadLevel("MainScene");
+                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
             else
             {
                 PhotonNetwork.LoadLevel("MainScene1");
+                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
 
         }
