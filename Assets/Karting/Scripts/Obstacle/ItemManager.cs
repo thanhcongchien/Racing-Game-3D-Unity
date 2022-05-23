@@ -123,7 +123,7 @@ public class ItemManager : MonoBehaviour
                 // clone.GetComponent<Banana>().Banana_thrown(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z * 200);
                 // clone.GetComponent<Banana>().whoThrewBanana = gameObject.name;
                 tripleItemCount--;
-                Debug.Log("Banana Spawned");
+                SoundManager.Instance.PlaySFX(SoundManager.ITEM_SFX);
                 used_Item_Done();
             }
 
@@ -139,7 +139,7 @@ public class ItemManager : MonoBehaviour
 
             clone = Instantiate(Bomb, bombSpawnPos.position, bombSpawnPos.rotation);
             tripleItemCount--;
-            Debug.Log("Bomb Spawned");
+            SoundManager.Instance.PlaySFX(SoundManager.ITEM_SFX);
             used_Item_Done();
         }
     }
@@ -148,7 +148,6 @@ public class ItemManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Gun.gameObject.SetActive(true);
         start_select = false;
-        Debug.Log("Gun Spawned");
     }
 
 
@@ -186,7 +185,7 @@ public class ItemManager : MonoBehaviour
     }
 
 
-    void dameRecipe(float dameLevel)
+    public void dameRecipe(float dameLevel)
     {
         damageRecieved = baseDamage * dameLevel;
         Debug.Log("damageRecieved: " + damageRecieved);

@@ -438,7 +438,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9134594304269154501}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1
@@ -456,6 +456,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6134dc5c4bbfb043ab0fbfb26bf65b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMode: 0
+  TimeGained: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  CollectVFXSpawnPoint: {fileID: 5233113255354960598}
+  CollectSound: {fileID: 8300000, guid: cf50d7c0416e5c642a4250a94f0cb1c3, type: 3}
+  active: 0
+  destroySpawnPrefabDelay: 1
+  collectDuration: 0
   life: 3
 --- !u!1001 &1001334074533805186
 PrefabInstance:

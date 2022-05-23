@@ -8,6 +8,9 @@ public class SoundManager : Singleton<SoundManager>
     public static int CLICK_SFX = 0;
     public static int CLOSE_SFX = CLICK_SFX + 1;
     public static int OPEN_SFX = CLOSE_SFX + 1;
+    public static int SHOOT_SFX = OPEN_SFX + 1;
+    public static int ITEM_SFX = SHOOT_SFX + 1;
+    public static int BULLET_HIT_SFX = ITEM_SFX + 1;
 
     // sound music
     public static int MENUBG_MUSIC = 0;
@@ -30,11 +33,14 @@ public class SoundManager : Singleton<SoundManager>
     public int currentSoundMusic;
     public bool isSoundSfx;
     public bool isSoundMusic;
+    [Tooltip("Maximum number of ShootingSoundMaxVolume")]
+    [Range(0.1f, 1.0f)]public float ShootingSoundMaxVolume = 1.0f;
+        
 
     void Start()
     {
         audioMusic = gameObject.AddComponent<AudioSource>() as AudioSource;
-
+        ShootingSoundMaxVolume = 0.3f;
         if (PlayerPrefs.HasKey(SAVE_SOUND_SFX))
         {
             isSoundSfx = PlayerPrefs.GetInt(SAVE_SOUND_SFX) == 1 ? true : false;
@@ -67,6 +73,9 @@ public class SoundManager : Singleton<SoundManager>
         if(isSoundSfx)
         {
             AudioSource src = GetAudioSourceFree();
+            if(index == SHOOT_SFX){
+                src.volume = ShootingSoundMaxVolume;
+            }
             src.PlayOneShot(listSoundSFX[index]);
 
         }

@@ -43,6 +43,7 @@ public class Gun : MonoBehaviour
             bulllet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.up * bulletSpeed;
             //Amount of bullets
             bullletAmount--;
+            SoundManager.Instance.PlaySFX(SoundManager.SHOOT_SFX);
             if (bullletAmount == 0)
             {
                 Debug.Log("No more bullets");
