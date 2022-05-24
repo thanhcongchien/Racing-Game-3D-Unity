@@ -13,12 +13,6 @@ public class UseItem : MonoBehaviour
         useItemButton.onClick.AddListener(useItem);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void useItem()
     {
         if (useItemButton != null)

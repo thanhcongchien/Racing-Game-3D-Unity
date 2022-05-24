@@ -31,6 +31,7 @@ public class PickupObject : TargetObject
         if (spawnPrefabOnPickup)
         {
             NitroScript.instance.BootNitroProcessBar();
+            NitroScript.instance.UpdateNitroIcon();
             var vfx = Instantiate(spawnPrefabOnPickup, CollectVFXSpawnPoint.position, Quaternion.identity);
             Destroy(vfx, destroySpawnPrefabDelay);
         }

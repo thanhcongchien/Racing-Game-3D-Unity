@@ -33,18 +33,7 @@ public class ItemUI : TargetObject
     // Update is called once per frame
     void Update()
     {
-        // if (ItemManager.itemManagerInstance.current_Item == "Banana")
-        // {
-        //     your_item.GetComponent<Image>().sprite = items_possible[0];
-        // }
-        // else if (ItemManager.itemManagerInstance.current_Item == "Bomb")
-        // {
-        //     your_item.GetComponent<Image>().sprite = items_possible[1];
-        // }
-        // else if (ItemManager.itemManagerInstance.current_Item == "Gun")
-        // {
-        //     your_item.GetComponent<Image>().sprite = items_possible[2];
-        // }
+
         if (ItemManager.itemManagerInstance.current_Item != "")
         {
             handOn_Item_UI(ItemManager.itemManagerInstance.current_Item);
@@ -54,15 +43,6 @@ public class ItemUI : TargetObject
             your_item.GetComponent<Image>().gameObject.SetActive(false);
         }
 
-
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if ((layerMask.value & 1 << other.gameObject.layer) > 0 && other.gameObject.CompareTag("Player"))
-        {
-
-        }
     }
 
     public void handOn_Item_UI(string current_Item_Handon)

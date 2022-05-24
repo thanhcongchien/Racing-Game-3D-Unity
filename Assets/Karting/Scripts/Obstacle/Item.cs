@@ -18,11 +18,6 @@ public class Item : TargetObject
         int itemIndex = Random.Range(0, item_name.Length);
         itemInBox = item_name[itemIndex];
     }
-    void Start()
-    {
-
-    }
-
     void OnCollect()
     {
         if (CollectSound)

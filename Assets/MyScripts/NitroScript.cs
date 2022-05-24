@@ -86,14 +86,14 @@ public class NitroScript : MonoBehaviour
         }
 
         // update nitro icon
-        if (playerNitroSlider.value < 1f && playerNitroSlider.value >= 0f)
-        {
-            NitroStatus.GetComponent<Image>().sprite = nitroIcon[0];
-        }
-        else
-        {
-            NitroStatus.GetComponent<Image>().sprite = nitroIcon[1];
-        }
+        // if (playerNitroSlider.value < 1f && playerNitroSlider.value >= 0f)
+        // {
+        //     NitroStatus.GetComponent<Image>().sprite = nitroIcon[0];
+        // }
+        // else
+        // {
+        //     NitroStatus.GetComponent<Image>().sprite = nitroIcon[1];
+        // }
 
         // reset speed after out of nitro
         if (playerNitroSlider.value == 0)
@@ -104,6 +104,20 @@ public class NitroScript : MonoBehaviour
         // rotate nitro items
         //setAnimationForItems();
     }
+
+
+    // update nitro icon
+    public void UpdateNitroIcon(){
+        if (playerNitroSlider.value < 1f && playerNitroSlider.value >= 0f)
+        {
+            NitroStatus.GetComponent<Image>().sprite = nitroIcon[0];
+        }
+        else
+        {
+            NitroStatus.GetComponent<Image>().sprite = nitroIcon[1];
+        }
+    }
+        
 
 
     // update nitro bar
@@ -119,8 +133,8 @@ public class NitroScript : MonoBehaviour
                 if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isLocalPlayer == true)
                 {
                     //playerNitroSlider.value += 0.2f;
-                    if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == true)
-                    {
+                    // if (Photon.Pun.Demo.PunBasics.PlayerManager.instance.isPicked == true)
+                    // {
                         fillNitroBar.GetComponent<Image>().gameObject.SetActive(true);
                         playerNitroSlider.value += Photon.Pun.Demo.PunBasics.PlayerManager.instance.nitroItem;
                     }
@@ -130,7 +144,7 @@ public class NitroScript : MonoBehaviour
 
                     }
 
-                }
+                // }
             }
 
             if (!KeyboardInput.instance.isBootNitro && playerNitroSlider.value >= 1f)
@@ -161,6 +175,7 @@ public class NitroScript : MonoBehaviour
                 playerNitroSlider.value -= 0.2f * Time.deltaTime;
                 if (playerNitroSlider.value == 0f)
                 {
+                    NitroScript.instance.UpdateNitroIcon();
                     KeyboardInput.instance.resetNitro = false;
                     KeyboardInput.instance.NitroVFX.gameObject.SetActive(false);
                     foreach (GameObject driff in KeyboardInput.instance.DriffVFX)

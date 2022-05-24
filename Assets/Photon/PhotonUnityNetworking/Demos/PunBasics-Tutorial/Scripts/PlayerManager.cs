@@ -64,7 +64,7 @@ namespace Photon.Pun.Demo.PunBasics
 
         public bool isLocalPlayer = false;
         public bool isPicked = false;
-        public float nitroItem;
+        public float nitroItem = 0.2f;
 
         //this.player
         public GameObject KartPlayer;
@@ -168,7 +168,7 @@ namespace Photon.Pun.Demo.PunBasics
             {
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
             }
-            this.nitroItem = 0f;
+            // this.nitroItem = 0f;
 
             //create the nitro UI
             if (this.NitroObj != null)
@@ -296,11 +296,11 @@ namespace Photon.Pun.Demo.PunBasics
                 this.beams.SetActive(this.IsFiring);
             }
 
-            if (isPicked == false)
-            {
-                this.nitroItem = 0;
+            // if (isPicked == false)
+            // {
+            //     this.nitroItem = 0;
 
-            }
+            // }
             if (isRotated == true)
             {
                 rotateBanana();
@@ -349,20 +349,20 @@ namespace Photon.Pun.Demo.PunBasics
             // check colider with nitro items
             if (photonView.IsMine)
             {
-                if (other.gameObject.name == "Nitro")
+                if (other.gameObject.name == "Donut")
                 {
-                    this.isPicked = true;
-                    if (this.isPicked == true)
-                    {
-                        this.nitroItem = 0.2f;
+                    // this.isPicked = true;
+                    this.nitroItem = 0.2f;
+                    // if (this.isPicked == true)
+                    // {
                         StartCoroutine(waitForAddingNitro());
-                    }
+                    // }
 
                 }
-                else
-                {
-                    this.nitroItem = 0;
-                }
+                // else
+                // {
+                //     this.nitroItem = 0;
+                // }
                 if (other.gameObject.name == "Banana Peel(Clone)")
                 {
                     isRotated = true;
@@ -384,7 +384,7 @@ namespace Photon.Pun.Demo.PunBasics
         public IEnumerator waitForAddingNitro()
         {
             yield return new WaitForSeconds(0.05f);
-            this.isPicked = false;
+            // this.isPicked = false;
         }
         public IEnumerator waitForRotateBanana()
         {
