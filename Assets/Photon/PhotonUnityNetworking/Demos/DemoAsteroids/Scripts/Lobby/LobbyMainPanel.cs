@@ -43,8 +43,9 @@ namespace Photon.Pun.Demo.Asteroids
         private Dictionary<int, GameObject> playerListEntries;
         [SerializeField] Image mapImg;
         [SerializeField] Text mapTxt;
-        public int currentMap = 0;
-        public string[] Map_List = { "MainScene", "MainScene1" };
+        public int currentMap;
+        public string[] Map_List;
+        public string[] Scene_List;
         public Sprite[] mapImgList;
 
         #region UNITY
@@ -290,36 +291,33 @@ namespace Photon.Pun.Demo.Asteroids
             SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
         }
 
-        public void OnClickChooseMap(int next)
-        {
-            // Player newMasterClient
-            // if (PhotonNetwork.LocalPlayer.ActorNumber == newMasterClient.ActorNumber)
-            // {
-            currentMap += next;
+        // public void OnClickChooseMap(int next)
+        // {
+        //     currentMap += next;
 
-            if (currentMap > 0)
-            {
-                currentMap = Map_List.Length - 1;
+        //     if (currentMap > 0)
+        //     {
+        //         currentMap = Map_List.Length - 1;
 
-                if (currentMap == 1)
-                {
-                    mapTxt.text = "Paradise Island";
-                    mapImg.sprite = mapImgList[currentMap];
-                    SoundManager.Instance.PlaySFX(SoundManager.OPEN_SFX);
-                }
-            }
-            else if (currentMap < Map_List.Length - 1)
-            {
-                currentMap = 0;
+        //         if (currentMap == 1)
+        //         {
+        //             mapTxt.text = "Paradise Island";
+        //             mapImg.sprite = mapImgList[currentMap];
+        //             SoundManager.Instance.PlaySFX(SoundManager.OPEN_SFX);
+        //         }
+        //     }
+        //     else if (currentMap < Map_List.Length - 1)
+        //     {
+        //         currentMap = 0;
 
-                if (currentMap == 0)
-                {
-                    mapTxt.text = "Future City";
-                    mapImg.sprite = mapImgList[currentMap];
-                    SoundManager.Instance.PlaySFX(SoundManager.OPEN_SFX);
-                }
-            }
-        }
+        //         if (currentMap == 0)
+        //         {
+        //             mapTxt.text = "Future City";
+        //             mapImg.sprite = mapImgList[currentMap];
+        //             SoundManager.Instance.PlaySFX(SoundManager.OPEN_SFX);
+        //         }
+        //     }
+        // }
 
         public void OnStartGameButtonClicked()
         {
@@ -327,17 +325,42 @@ namespace Photon.Pun.Demo.Asteroids
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
             //PhotonNetwork.LoadLevel("DemoAsteroids-GameScene");
-            if (currentMap == 0)
-            {
-                PhotonNetwork.LoadLevel("MainScene");
-                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
-            }
-            else
-            {
-                PhotonNetwork.LoadLevel("MainScene1");
+            // if (currentMap == 0)
+            // {
+            //     PhotonNetwork.LoadLevel("MainScene");
+            //     SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
+            // }
+            // else
+            // {
+            //     PhotonNetwork.LoadLevel("MainScene1");
+            //     SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
+            // }
+            if(this.currentMap != null){
+                PhotonNetwork.LoadLevel(Scene_List[this.currentMap]);
                 SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
 
+        }
+        void selectMap(int map){
+            map = this.currentMap;
+            mapTxt.text = Map_List[map];
+            mapImg.sprite = mapImgList[currentMap];
+            
+        }
+
+        public void OnClickNextMapButtonClicked(int next){
+            if(this.currentMap < Map_List.Length - 1){
+                this.currentMap += next;    
+                selectMap(currentMap);
+            }
+        }
+        
+
+        public void OnClickPreviousMapButtonClicked(int previous){
+             if(currentMap >= previous){
+                this.currentMap -= previous;    
+                selectMap(currentMap);
+             }
         }
 
         #endregion

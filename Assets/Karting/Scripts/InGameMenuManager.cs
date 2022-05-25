@@ -68,6 +68,7 @@ public class InGameMenuManager : MonoBehaviour
             controlImage.SetActive(false);
             return;
         }
+        SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
         SetPauseMenuActivation(!menuRoot.activeSelf);
     }
 
