@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 49f4f85309ed13f42be9e0c85e7f2af7, type: 3}
   - {fileID: 8300000, guid: f2c8f485c3addeb40a562f0caa939284, type: 3}
   - {fileID: 8300000, guid: cf50d7c0416e5c642a4250a94f0cb1c3, type: 3}
+  - {fileID: 8300000, guid: 4c18f79e15e549247ae89ab5139e19fc, type: 3}
   m_startSourceNumber: 5
   listSoundMusic: []
   currentSoundMusic: 0

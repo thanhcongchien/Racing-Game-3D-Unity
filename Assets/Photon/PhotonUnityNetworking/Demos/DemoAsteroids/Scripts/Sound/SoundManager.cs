@@ -11,6 +11,7 @@ public class SoundManager : Singleton<SoundManager>
     public static int SHOOT_SFX = OPEN_SFX + 1;
     public static int ITEM_SFX = SHOOT_SFX + 1;
     public static int BULLET_HIT_SFX = ITEM_SFX + 1;
+    public static int NITRO_BOOST_SFX = BULLET_HIT_SFX + 1;
 
     // sound music
     public static int MENUBG_MUSIC = 0;

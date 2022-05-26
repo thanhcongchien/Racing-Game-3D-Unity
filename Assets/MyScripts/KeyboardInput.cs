@@ -66,7 +66,7 @@ namespace KartGame.KartSystems {
         {
                 if (Input.touchCount == 2)
                 {
-                
+                     SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
                     if (NitroScript.instance != null)
                     {
 
@@ -80,6 +80,7 @@ namespace KartGame.KartSystems {
                             this.ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed += 50;
                             if (this.ownerKart.gameObject.GetComponent<ArcadeKart>().baseStats.TopSpeed > 20)
                             {
+                                SoundManager.Instance.PlaySFX(SoundManager.NITRO_BOOST_SFX);
                                 NitroVFX.gameObject.SetActive(true);
                                 foreach (GameObject driff in DriffVFX)
                                 {

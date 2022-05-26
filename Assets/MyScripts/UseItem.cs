@@ -27,8 +27,7 @@ public class UseItem : MonoBehaviour
                 {
                     ItemManager.itemManagerInstance.ReadyToUseIem();
                 }
-
-
+                SoundManager.Instance.PlaySFX(SoundManager.CLICK_SFX);
             }
         }
     }

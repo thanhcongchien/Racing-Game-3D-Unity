@@ -12,8 +12,7 @@ public class PositionsController : MonoBehaviour
     PlayerInfo[] allPlayerInfo;
     Text tableText;
     GameFlowManager flowManager;
-    public Sprite[] imageRank;
-    public Image playerRank;
+    public GameObject[] imageRank;
 
 
     private void Awake()
@@ -29,6 +28,12 @@ public class PositionsController : MonoBehaviour
         if (objManager != null)
         {
             flowManager = objManager.GetComponent<GameFlowManager>();
+        }
+        
+        for(int i = 0 ; i <= allPlayerInfo.Length; i++)
+        {
+                imageRank[i].SetActive(true);
+            
         }
     }
 
@@ -66,9 +71,10 @@ public class PositionsController : MonoBehaviour
                 tableText.text = "";
                 foreach (PlayerInfo order in ordered_Players)
                 {
-                    tableText.text += "#" + counter + " - " + order.PlayerName + "\n";
+                    tableText.text +=  order.PlayerName + "\n";
                     order.PlayerPosition = counter;
                     counter++;
+                    // "#" + counter + " - " +
                 }
             }
         }
