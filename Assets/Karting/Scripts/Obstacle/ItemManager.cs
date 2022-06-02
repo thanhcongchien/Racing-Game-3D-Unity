@@ -39,6 +39,7 @@ public class ItemManager : MonoBehaviour
     public float damageRecieved;
     public bool isUsedItem = false;
 
+    public float healthPlayer = 1f;
     void Awake()
     {
         if (itemManagerInstance == null)
@@ -63,22 +64,6 @@ public class ItemManager : MonoBehaviour
 
 
 
-        //     if (current_Item == "Banana")
-        //     {
-        //         if (Input.GetKeyDown(KeyCode.Space))
-        //         {
-        //             StartCoroutine(spawnBanana(1));
-        //         }
-
-        //     }
-        //     else if (current_Item == "Bomb")
-        //     {
-        //         if (Input.GetKeyDown(KeyCode.Space))
-        //         {
-        //             StartCoroutine(spawnBomb(-1));
-        //         }
-
-        //     }
             if (current_Item == "Gun")
             {
                 StartCoroutine(getGun());
@@ -161,18 +146,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    // function has not tested 
 
-
-
-    // function has not tested 
-    // public void OnTriggerEnter(Collider other){
-    //     if(other.gameObject.name == "bullet(Clone)"){
-    //         isDamageRecieved = true;
-    //         // damage of gun is 0.2
-    //         dameRecipe(2);
-    //     }
-    // }
 
     public void OnCollisionEnter(Collision other)
     {

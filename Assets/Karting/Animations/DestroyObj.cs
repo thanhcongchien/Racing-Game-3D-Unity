@@ -11,10 +11,9 @@ public class DestroyObj : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public void FixedUpdate() {
+    GetComponent<Rigidbody>().AddForce(Physics.gravity * 2f, ForceMode.Acceleration);
+}
     private void DestroyBallObject()
     {
         Destroy(this.gameObject);

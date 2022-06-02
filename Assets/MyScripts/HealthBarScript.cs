@@ -105,12 +105,13 @@ public class HealthBarScript : MonoBehaviour
                     {
                         playerHealthSlider.value -= ItemManager.itemManagerInstance.damageRecieved;
                         Debug.Log("plplayerHealthSlider.value: " + playerHealthSlider.value);
+                        ItemManager.itemManagerInstance.healthPlayer = playerHealthSlider.value;
                         ItemManager.itemManagerInstance.isDamageRecieved = false;
                     }
                     else
                     {
                         playerHealthSlider.value -= 0;
-
+                        ItemManager.itemManagerInstance.healthPlayer -= 0;
                     }
 
                 }

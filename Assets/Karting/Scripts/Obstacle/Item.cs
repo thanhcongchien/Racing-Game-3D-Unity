@@ -38,12 +38,9 @@ public class Item : TargetObject
 
         if (other.gameObject.CompareTag("Player"))
         {
-            var itemManager = other.gameObject;
-            if (itemManager.GetComponent<ItemManager>() != null)
-            {
-                itemManager.GetComponent<ItemManager>().current_Item = itemInBox;
-                itemManager.GetComponent<ItemManager>().start_select = true;
-            }
+            ItemManager itemManager = other.gameObject.GetComponent<ItemManager>();;
+            itemManager.GetComponent<ItemManager>().current_Item = itemInBox;
+            itemManager.GetComponent<ItemManager>().start_select = true;
 
             OnCollect();
 

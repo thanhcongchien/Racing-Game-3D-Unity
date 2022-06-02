@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.Playables;
 using KartGame.KartSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public enum GameState{Play, Won, Lost}
+public enum GameState{Play, Won, Lost,Dead}
 
 public class GameFlowManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameFlowManager : MonoBehaviour
     public float endSceneLoadDelay = 3f;
     [Tooltip("The canvas group of the fade-to-black screen")]
     public CanvasGroup endGameFadeCanvasGroup;
+    public CanvasGroup dieGameFadeCanvasGroup;
 
     [Header("Win")]
     [Tooltip("This string has to be the name of the scene you want to load when winning")]
@@ -36,6 +38,11 @@ public class GameFlowManager : MonoBehaviour
     public DisplayMessage loseDisplayMessage;
 
 
+    [Header("Die")]
+    [Tooltip("Prefab for the die message")]
+    public DisplayMessage dieDisplayMessage;
+
+
     public GameState gameState { get; private set; }
 
     public bool autoFindKarts = true;
@@ -49,15 +56,28 @@ public class GameFlowManager : MonoBehaviour
     float elapsedTimeBeforeEndScene = 0;
     bool isEndGame=false;
 
+    ItemManager[] m_ItemManager;
+    public ItemManager itemManager;
+
+ 
+
+    
     void Start()
     {
         if (autoFindKarts)
         {
             karts = FindObjectsOfType<ArcadeKart>();
+            m_ItemManager = FindObjectsOfType<ItemManager>();
             if (karts.Length > 0)
             {
                 if (!playerKart) playerKart = karts[0];
             }
+            if(m_ItemManager.Length > 0)
+            {
+                if(!itemManager) itemManager = m_ItemManager[0];
+            }
+            Debug.Log("Kart Count: " + itemManager);
+            DebugUtility.HandleErrorIfNullFindObject<ItemManager, GameFlowManager>(itemManager, this);
             DebugUtility.HandleErrorIfNullFindObject<ArcadeKart, GameFlowManager>(playerKart, this);
         }
 
@@ -71,6 +91,8 @@ public class GameFlowManager : MonoBehaviour
 
         winDisplayMessage.gameObject.SetActive(false);
         loseDisplayMessage.gameObject.SetActive(false);
+        dieDisplayMessage.gameObject.SetActive(false);
+        
 
         m_TimeManager.StopRace();
         foreach (ArcadeKart k in karts)
@@ -125,6 +147,7 @@ public class GameFlowManager : MonoBehaviour
 
                 float timeRatio = 1 - (m_TimeLoadEndGameScene - Time.time) / endSceneLoadDelay;
                 endGameFadeCanvasGroup.alpha = timeRatio;
+                // dieGameFadeCanvasGroup.alpha = 0.5f;
 
                 float volumeRatio = Mathf.Abs(timeRatio);
                 float volume = Mathf.Clamp(1 - volumeRatio, 0, 1);
@@ -145,6 +168,12 @@ public class GameFlowManager : MonoBehaviour
 
             if (m_TimeManager.IsFinite && m_TimeManager.IsOver)
                 EndGame(false);
+
+            if(itemManager.healthPlayer <= 0){
+                DieGame(true);
+                
+            }
+                
         }
     }
 
@@ -184,9 +213,28 @@ public class GameFlowManager : MonoBehaviour
             // create a game message
             loseDisplayMessage.delayBeforeShowing = delayBeforeWinMessage;
             loseDisplayMessage.gameObject.SetActive(true);
-        }        
+        }
     }
 
+    void DieGame(bool die){
+        isEndGame = true;
+        dieGameFadeCanvasGroup.gameObject.SetActive(true);
+        // unlocks the cursor before leaving the scene, to be able to click buttons
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        m_TimeManager.StopRace();
+        endGameFadeCanvasGroup.gameObject.SetActive(true);
+        //load scene when player die
+        if(die){
+            
+            gameState = GameState.Dead;
+            m_SceneToLoad = loseSceneName;
+            // create a game message
+            dieDisplayMessage.delayBeforeShowing = delayBeforeWinMessage;
+            dieDisplayMessage.gameObject.SetActive(true);
+        }
+
+    }
     public bool GetEndGame(){
         return isEndGame;
     }

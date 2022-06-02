@@ -122,14 +122,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8740502759283812627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6134dc5c4bbfb043ab0fbfb26bf65b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunObj: {fileID: 6544725207751055537, guid: e34efda268f44c249b2cd42ecb96e8f0, type: 3}
+  gameMode: 0
+  TimeGained: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  CollectVFXSpawnPoint: {fileID: 0}
+  CollectSound: {fileID: 0}
+  active: 0
+  destroySpawnPrefabDelay: 10
+  collectDuration: 0
   life: 3
-  bullletAmount: 5
 --- !u!1001 &3506753158867326557
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -349,7 +349,7 @@ namespace Photon.Pun.Demo.PunBasics
             // check colider with nitro items
             if (photonView.IsMine)
             {
-                if (other.gameObject.name == "Donut")
+                if (other.gameObject.name == "Nitro")
                 {
                     // this.isPicked = true;
                     this.nitroItem = 0.2f;
