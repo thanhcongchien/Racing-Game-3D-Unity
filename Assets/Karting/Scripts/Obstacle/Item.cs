@@ -6,7 +6,7 @@ public class Item : TargetObject
 
 {
 
-    public string[] item_name = new string[] { "Banana", "Bomb", "Gun" };
+    public string[] item_name = new string[] { "Banana", "Bomb", "Gun", "Smoke" };
     // public int itemIndex;
     public string itemInBox;
     [Tooltip("Destroy the spawned spawnPrefabOnPickup gameobject after this delay time. Time is in seconds.")]
@@ -38,14 +38,13 @@ public class Item : TargetObject
 
         if (other.gameObject.CompareTag("Player"))
         {
-            ItemManager itemManager = other.gameObject.GetComponent<ItemManager>();;
-            itemManager.GetComponent<ItemManager>().current_Item = itemInBox;
-            itemManager.GetComponent<ItemManager>().start_select = true;
-
+            ItemManager itemManager = other.gameObject.GetComponent<ItemManager>(); ;
+            if (itemManager.GetComponent<ItemManager>().start_select == false)
+            {
+                itemManager.GetComponent<ItemManager>().current_Item = itemInBox;
+                itemManager.GetComponent<ItemManager>().start_select = true;
+            }
             OnCollect();
-
-
-
         }
     }
 

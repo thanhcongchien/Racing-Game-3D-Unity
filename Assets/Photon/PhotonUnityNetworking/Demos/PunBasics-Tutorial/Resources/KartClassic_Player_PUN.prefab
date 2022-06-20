@@ -425,6 +425,87 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &370436916470064500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5677714364588581203}
+  - component: {fileID: 6349353995055249827}
+  - component: {fileID: 6989417635756439291}
+  m_Layer: 16
+  m_Name: PlayerNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5677714364588581203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370436916470064500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2801, y: 0, z: -0.2721}
+  m_LocalScale: {x: 2.0849085, y: 2.0849085, z: 2.0849085}
+  m_Children: []
+  m_Father: {fileID: 3514357923825085166}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6349353995055249827
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370436916470064500}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &6989417635756439291
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370436916470064500}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 720149e63952b457590122b90ee86b07, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &598714825476218528
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +971,36 @@ Transform:
   - {fileID: 5560385670077329159}
   m_Father: {fileID: 1266537379870128172}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1470632154343221488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739856514856094354}
+  m_Layer: 2
+  m_Name: SmokeSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &739856514856094354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470632154343221488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3514357923825085166}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574360888877984464
 GameObject:
@@ -4373,6 +4484,8 @@ Transform:
   - {fileID: 1205298404827722866}
   - {fileID: 8231045064243376496}
   - {fileID: 1797444843457450164}
+  - {fileID: 739856514856094354}
+  - {fileID: 5677714364588581203}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4606,7 +4719,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: bdf0bf742eef44db49906f57d30ad905, type: 2}
   - {fileID: 2100000, guid: 346183a72a1454a878a57ebb8b961c51, type: 2}
   - {fileID: 2100000, guid: e7c453d829e9a4662a456d2da16a7e42, type: 2}
-  - {fileID: 2100000, guid: a8f127f4a0a19407db2b784d5ae1b637, type: 3}
+  - {fileID: 2100000, guid: 3869da5c1b38e487aaa31c9021e4134f, type: 2}
   - {fileID: 2100000, guid: 1af2f720e69c5224b8d6cb78ecc43947, type: 2}
   - {fileID: 2100000, guid: 6487fdefd669d4dbc91709a177cd4b93, type: 2}
   skinMaterialBody: {fileID: 6943537814752653735}
@@ -4615,6 +4728,7 @@ MonoBehaviour:
   isRotated: 0
   hasitem: 0
   KartObj: {fileID: 4427086718914350375}
+  playerNdoe: {fileID: 370436916470064500}
 --- !u!65 &-3331820226627108796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4751,18 +4865,22 @@ MonoBehaviour:
   Banana: {fileID: 8433876166713557423, guid: b14e14220aeee0e4586c6adc9fe91ddd, type: 3}
   Bomb: {fileID: 6727791353084141406, guid: cd5c63941563adc4785f0babec2a8dab, type: 3}
   Gun: {fileID: 4336211328679913508}
+  Smoke: {fileID: 100002, guid: 1b965847239ef1b4bb7bf9b94bd359af, type: 3}
   shellSpawnPos: {fileID: 0}
   backshellPos: {fileID: 0}
   BananaSpawnPos: {fileID: 8231045064243376496}
   coinSpawnPos: {fileID: 0}
   bombSpawnPos: {fileID: 1797444843457450164}
+  smokeSpawnPos: {fileID: 739856514856094354}
   item_index: 0
   tripleItemCount: 3
+  isSmoke: 0
   current_Item: 
   isDamageRecieved: 0
   baseDamage: 1
   damageRecieved: 0
   isUsedItem: 0
+  healthPlayer: 1
 --- !u!1001 &1843756253410967351
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,16 +19,19 @@ public class ItemManager : MonoBehaviour
     public GameObject Banana;
     public GameObject Bomb;
     public GameObject Gun;
+    public GameObject Smoke;
     public Transform shellSpawnPos;
     public Transform backshellPos; //also for bananas
     public Transform BananaSpawnPos;
     public Transform coinSpawnPos;
     public Transform bombSpawnPos;
+    public Transform smokeSpawnPos;
 
     // [HideInInspector]
     public int item_index = 0;
     // [HideInInspector]
     public int tripleItemCount = 3;
+    public bool isSmoke = false;
     // [HideInInspector]
     public string current_Item;
 
@@ -82,14 +85,18 @@ public class ItemManager : MonoBehaviour
 
             if (current_Item == "Banana")
             {
-                  StartCoroutine(spawnBanana(1));
-                
+                StartCoroutine(spawnBanana(1));
+
 
             }
             else if (current_Item == "Bomb")
             {
-                    StartCoroutine(spawnBomb(-1));
+                StartCoroutine(spawnBomb(-1));
 
+            }
+            else if (current_Item == "Smoke")
+            {
+                StartCoroutine(spawnSmoke());
             }
 
         }
@@ -135,10 +142,20 @@ public class ItemManager : MonoBehaviour
         start_select = false;
     }
 
+    IEnumerator spawnSmoke()
+    {
+        GameObject clone;
+        yield return new WaitForSeconds(0.1f);
+        clone = Instantiate(Smoke, smokeSpawnPos.position, smokeSpawnPos.rotation);
+        isSmoke = false;
+        SoundManager.Instance.PlaySFX(SoundManager.ITEM_SFX);
+        used_Item_Done();
+    }
+
 
     void used_Item_Done()
     {
-        if (tripleItemCount == 0)
+        if (tripleItemCount == 0 || !isSmoke)
         {
             start_select = false;
             current_Item = "";

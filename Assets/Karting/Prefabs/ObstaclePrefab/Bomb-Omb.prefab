@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad3fb2fcf5c0924cbf56dc2433dd73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exp: {fileID: 100006, guid: 93485fd5fc2ccf2439cb3239186f6382, type: 3}
+  exp: {fileID: 100006, guid: 808e73d863fcde3499fd5301563ffd3d, type: 3}
   exForce: 200
   radius: 2
   saw: {fileID: 8300000, guid: 4285c0aa2a6330d48a10808f8c3f98d5, type: 3}

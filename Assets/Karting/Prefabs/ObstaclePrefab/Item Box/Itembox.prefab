@@ -19930,6 +19930,7 @@ MonoBehaviour:
   - Banana
   - Bomb
   - Gun
+  - Smoke
   itemInBox: 
   destroySpawnPrefabDelay: 1
   collectDuration: 0

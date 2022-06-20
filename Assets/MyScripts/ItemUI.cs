@@ -68,6 +68,11 @@ public class ItemUI : TargetObject
                         your_item.GetComponent<Image>().gameObject.SetActive(true);
                         your_item.GetComponent<Image>().sprite = itemIcon[2];
                     }
+                    else if (current_Item_Handon == "Smoke")
+                    {
+                        your_item.GetComponent<Image>().gameObject.SetActive(true);
+                        your_item.GetComponent<Image>().sprite = itemIcon[3];
+                    }
                 }
                 else
                 {

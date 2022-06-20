@@ -86,6 +86,10 @@ namespace Photon.Pun.Demo.PunBasics
 
         public GameObject KartObj;
 
+        // playerNode
+
+        [SerializeField] GameObject playerNdoe;
+
         #endregion
 
         #region MonoBehaviour CallBacks
@@ -214,12 +218,9 @@ namespace Photon.Pun.Demo.PunBasics
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> HealthObj reference on player Prefab.", this);
             }
 
-
-
-            //if (photonView.IsMine)
-            //{
-            //    RandomSkinKart();
-            //}
+            if(photonView.IsMine){
+                playerNdoe.GetComponent<MeshRenderer>().material = materialList[10];
+            }
             PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
 
 
